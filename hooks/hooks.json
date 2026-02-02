@@ -1,0 +1,102 @@
+{
+  "$schema": "https://code.claude.com/schemas/hooks.json",
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "description": "Initialize JADE-DEV-ASSIST context on session start",
+      "actions": [
+        {
+          "type": "loadContext",
+          "files": [
+            "~/.claude/CLAUDE.md",
+            ".claude/CLAUDE.md"
+          ],
+          "optional": true
+        },
+        {
+          "type": "applySettings",
+          "source": ".claude/settings.local.json",
+          "fallback": "~/.claude/settings.json"
+        }
+      ]
+    },
+    {
+      "event": "PostToolUse",
+      "description": "Track file changes for workflow progress",
+      "conditions": [
+        {
+          "tool": "Write",
+          "pathPattern": "**/*.{ts,tsx,js,jsx,py,go,rs}"
+        }
+      ],
+      "actions": [
+        {
+          "type": "runScript",
+          "script": "./scripts/track-progress.sh",
+          "args": ["${tool.path}"],
+          "background": true
+        }
+      ]
+    },
+    {
+      "event": "PreToolUse",
+      "description": "Validate operations against project conventions",
+      "conditions": [
+        {
+          "tool": "Write",
+          "pathPattern": "**/*.{ts,tsx}"
+        }
+      ],
+      "actions": [
+        {
+          "type": "validate",
+          "rules": [
+            "typescript-strict",
+            "no-any-types"
+          ],
+          "warnOnly": true
+        }
+      ]
+    },
+    {
+      "event": "SessionEnd",
+      "description": "Generate session summary on exit",
+      "actions": [
+        {
+          "type": "runScript",
+          "script": "./scripts/session-summary.sh",
+          "args": ["${session.id}"],
+          "timeout": 30
+        }
+      ]
+    },
+    {
+      "event": "UserPromptSubmit",
+      "description": "Auto-detect task type and suggest capabilities",
+      "actions": [
+        {
+          "type": "analyze",
+          "prompt": "${user.message}",
+          "suggestCapabilities": true
+        }
+      ]
+    }
+  ],
+  "scripts": {
+    "track-progress": {
+      "path": "./scripts/track-progress.sh",
+      "description": "Track file modifications for roadmap progress",
+      "timeout": 10
+    },
+    "session-summary": {
+      "path": "./scripts/session-summary.sh",
+      "description": "Generate end-of-session summary",
+      "timeout": 30
+    },
+    "validate-conventions": {
+      "path": "./scripts/validate-conventions.sh",
+      "description": "Validate code against project conventions",
+      "timeout": 15
+    }
+  }
+}

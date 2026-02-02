@@ -1,0 +1,41 @@
+{
+  "name": "jade-dev-assist",
+  "version": "1.0.0",
+  "description": "Advanced Claude Code plugin for JADE-IDE development workflow management with three-tier personalization",
+  "main": "scripts/index.js",
+  "scripts": {
+    "test": "node tests/test-plugin.js",
+    "validate": "node scripts/validate-plugin.js .",
+    "lint": "eslint scripts/ --ext .js",
+    "prepare": "npm run validate"
+  },
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "jade-ide",
+    "personalization",
+    "workflow",
+    "skills",
+    "styles",
+    "extended-thinking",
+    "development-tools"
+  ],
+  "author": "jadecli",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadecli/jade-dev-assist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jadecli/jade-dev-assist/issues"
+  },
+  "homepage": "https://github.com/jadecli/jade-dev-assist#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {},
+  "claude-plugin": {
+    "manifest": ".claude-plugin/plugin.json",
+    "minVersion": "2.1.0"
+  }
+}
