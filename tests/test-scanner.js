@@ -286,11 +286,14 @@ test('9. scanTasks handles malformed JSON gracefully (warns, continues with othe
         // Capture console.warn output
         const originalWarn = console.warn;
         let warnCalled = false;
+        let tasks;
         console.warn = function () { warnCalled = true; };
 
-        const tasks = scanTasks({ registryPath: env.registryPath });
-
-        console.warn = originalWarn;
+        try {
+            tasks = scanTasks({ registryPath: env.registryPath });
+        } finally {
+            console.warn = originalWarn;
+        }
 
         assert(warnCalled, 'Expected console.warn to be called for malformed JSON');
         assert(Array.isArray(tasks), 'Expected tasks to be an array');
