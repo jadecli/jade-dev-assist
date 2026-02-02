@@ -97,7 +97,7 @@
       "id": "jade-dev-assist/implement-dispatcher",
       "title": "Implement lib/dispatcher.js - worker dispatch",
       "description": "Implement the worker dispatch module that constructs a swarm worker prompt and launches it in the target project directory. Read the task details, project CLAUDE.md, and relevant files. Enforce the 60K token initial prompt cap. Set working directory and dispatch with max_turns: 25.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "L",
       "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
       "unlocks": [],
