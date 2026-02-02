@@ -4,7 +4,7 @@
   "description": "Advanced Claude Code plugin for JADE-IDE development workflow management with three-tier personalization",
   "main": "scripts/index.js",
   "scripts": {
-    "test": "node tests/test-plugin.js",
+    "test": "node tests/test-runner.js",
     "validate": "node scripts/validate-plugin.js .",
     "lint": "eslint scripts/ --ext .js",
     "prepare": "npm run validate"
