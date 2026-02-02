@@ -176,6 +176,67 @@
         "commands/orchestrate.md"
       ],
       "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/worker-execution",
+      "title": "Add worker execution module",
+      "description": "Add lib/executor.js that spawns a Claude Code subprocess with the dispatcher-built prompt. The executor should: (1) call dispatchWorker() to get the prompt, (2) spawn 'claude --print --dangerouslySkipPermissions' as a child process with the prompt on stdin, (3) stream stdout/stderr, (4) on completion, update task status to completed/failed. Add tests with mocked child_process.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": ["jade-dev-assist/status-updater"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Actually spawn Claude Code workers from the orchestrator",
+        "benefit": "Closes the loop from task ranking to actual execution",
+        "acceptance_criteria": [
+          "executor.js exports executeWorker(taskId, options) function",
+          "Spawns claude subprocess with --print flag and dispatcher prompt",
+          "Streams worker stdout/stderr to caller",
+          "Updates task status to completed on success, failed on error",
+          "Records execution history with timestamps in tasks.json",
+          "Tests verify spawn, status updates, and error handling",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/executor.js",
+        "lib/dispatcher.js",
+        "tests/test-executor.js"
+      ],
+      "created_at": "2026-02-02T14:30:00Z",
+      "completed_at": "2026-02-02T15:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/status-updater",
+      "title": "Add status-updater and milestone-tracker",
+      "description": "Add lib/status-updater.js that tracks worker completion and updates task status back to completed. Add lib/milestone-tracker.js that computes milestone progress (X/Y tasks done) and can update roadmap/current.md. Tests for both modules.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": ["jade-dev-assist/worker-execution"],
+      "unlocks": [],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Automated status tracking and milestone progress reporting",
+        "benefit": "Closes the feedback loop so orchestrator always has current task state",
+        "acceptance_criteria": [
+          "status-updater.js watches for worker completion and updates tasks.json",
+          "milestone-tracker.js computes per-project and overall completion percentages",
+          "milestone-tracker can render a progress summary table",
+          "Tests verify status transitions and milestone calculations",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/status-updater.js",
+        "lib/milestone-tracker.js",
+        "tests/test-status-updater.js",
+        "tests/test-milestone-tracker.js"
+      ],
+      "created_at": "2026-02-02T14:30:00Z",
+      "completed_at": "2026-02-02T16:00:00Z"
     }
   ]
 }
