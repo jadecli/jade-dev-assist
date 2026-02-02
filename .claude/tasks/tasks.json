@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "project": "jade-dev-assist",
+  "milestone": {
+    "name": "Orchestrator MVP",
+    "target_date": "2026-03-15",
+    "description": "Orchestrator can scan tasks, compute priorities, display ranked list, and dispatch workers"
+  },
+  "tasks": [
+    {
+      "id": "jade-dev-assist/implement-scanner",
+      "title": "Implement lib/scanner.js - task scanner",
+      "description": "Implement the task scanner module that reads .claude/tasks/tasks.json from each project listed in ~/.jade/projects.json. Produce a unified in-memory list of all tasks across the ecosystem. Handle missing files gracefully (project has no tasks = empty list). Tag each task with its source project.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": ["jade-dev-assist/implement-scorer", "jade-dev-assist/implement-presenter"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Read and merge task files from all 8 jadecli projects into a unified list",
+        "benefit": "Foundation for the orchestrator - without scanning, nothing else works",
+        "acceptance_criteria": [
+          "scanTasks() reads ~/.jade/projects.json for project paths",
+          "For each project, reads {project_path}/.claude/tasks/tasks.json",
+          "Returns a merged array of all tasks tagged with source project name",
+          "Missing tasks.json files produce an empty array, not an error",
+          "Malformed JSON files produce a warning and are skipped",
+          "Total token cost stays under 20K for 8 projects"
+        ]
+      },
+      "relevant_files": [
+        "lib/scanner.js",
+        "tests/scanner.test.js"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/implement-scorer",
+      "title": "Implement lib/scorer.js - priority algorithm",
+      "description": "Implement the priority scoring algorithm from Section 5 of the design doc. Compute a weighted score from 0-100 for each task based on project maturity (0.20), task impact (0.30), dependency status (0.20), effort-to-value ratio (0.15), and developer preference (0.15). Handle priority_override fields.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": ["jade-dev-assist/implement-scanner"],
+      "unlocks": ["jade-dev-assist/implement-presenter"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Compute numeric priority scores for all tasks using the weighted algorithm",
+        "benefit": "Automated prioritization removes the need for manual backlog grooming",
+        "acceptance_criteria": [
+          "scoreTask(task, project, allTasks) returns a number from 0-100",
+          "Project maturity maps: buildable=100, near-buildable=80, scaffolding-plus=60, scaffolding=40, blocked=10",
+          "Impact score includes unlock_bonus (+15 per unlocked task, max 45)",
+          "Dependency score is 100 if unblocked, 0 if blocked, 50 if blockers in_progress",
+          "Effort-to-value applies complexity multipliers: S=1.0, M=0.75, L=0.50, XL=0.30",
+          "priority_override replaces the computed score entirely when set",
+          "Scoring is deterministic: same inputs always produce same output",
+          "Tests verify the scoring example from the design doc (jade-cli/fix-node-build = 78.0)"
+        ]
+      },
+      "relevant_files": [
+        "lib/scorer.js",
+        "tests/scorer.test.js"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/implement-presenter",
+      "title": "Implement lib/presenter.js - terminal display",
+      "description": "Implement the terminal display module that renders the ranked task list as a formatted table. Show columns for rank, project name, task title, computed score, and complexity. Support configurable display count (default 10).",
+      "status": "completed",
+      "complexity": "S",
+      "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
+      "unlocks": ["jade-dev-assist/create-orchestrate-command"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Formatted terminal table showing ranked tasks across all projects",
+        "benefit": "Clean visual display makes the orchestrator output scannable and actionable",
+        "acceptance_criteria": [
+          "presentTasks(rankedTasks, count) renders a table to stdout",
+          "Table includes columns: #, Project, Task, Score, Size",
+          "Tasks are sorted by score descending",
+          "Long project names are truncated to 16 characters",
+          "Long task titles are truncated to 40 characters",
+          "Default count is 10 tasks"
+        ]
+      },
+      "relevant_files": [
+        "lib/presenter.js",
+        "tests/presenter.test.js"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/implement-dispatcher",
+      "title": "Implement lib/dispatcher.js - worker dispatch",
+      "description": "Implement the worker dispatch module that constructs a swarm worker prompt and launches it in the target project directory. Read the task details, project CLAUDE.md, and relevant files. Enforce the 60K token initial prompt cap. Set working directory and dispatch with max_turns: 25.",
+      "status": "pending",
+      "complexity": "L",
+      "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
+      "unlocks": [],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Construct and launch swarm worker prompts in target project directories",
+        "benefit": "Automates the entire dispatch workflow from task selection to worker execution",
+        "acceptance_criteria": [
+          "dispatchWorker(task, project) constructs a worker prompt under 60K tokens",
+          "Worker prompt includes task title, description, feature description, and acceptance criteria",
+          "Worker prompt includes project CLAUDE.md contents",
+          "Worker prompt includes contents of task.relevant_files (trimmed to fit budget)",
+          "Worker is launched in the correct project directory",
+          "Task status is updated to in_progress before dispatch",
+          "Tests verify prompt construction and token budget enforcement"
+        ]
+      },
+      "relevant_files": [
+        "lib/dispatcher.js",
+        "tests/dispatcher.test.js"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/write-scanner-scorer-tests",
+      "title": "Write tests for scanner and scorer",
+      "description": "Write TDD-first tests for the scanner and scorer modules. Tests should cover happy paths, error cases, and the scoring examples from the design doc. Create test fixtures with sample tasks.json and projects.json files.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["test"],
+      "feature": {
+        "description": "TDD test suites for scanner and scorer modules",
+        "benefit": "Tests define the contract before implementation, ensuring correctness from the start",
+        "acceptance_criteria": [
+          "Scanner tests cover: valid project scan, missing tasks.json, malformed JSON, empty project list",
+          "Scorer tests cover: all maturity levels, unlock bonuses, dependency states, complexity multipliers",
+          "Scorer tests verify the design doc example: jade-cli/fix-node-build scores 78.0",
+          "Scorer tests verify the design doc example: jade-ide/research-vscode-api scores 12.95",
+          "Test fixtures include sample projects.json and tasks.json files",
+          "All tests fail initially (TDD red phase) before implementation"
+        ]
+      },
+      "relevant_files": [
+        "tests/scanner.test.js",
+        "tests/scorer.test.js",
+        "tests/fixtures/"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/create-orchestrate-command",
+      "title": "Create orchestrate command",
+      "description": "Create the commands/orchestrate.md command definition that wires together the scanner, scorer, and presenter modules. Support subcommands: list, dispatch, add, batch, milestones, status, reprioritize, and init.",
+      "status": "completed",
+      "complexity": "S",
+      "blocked_by": ["jade-dev-assist/implement-presenter"],
+      "unlocks": [],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "The jade:orchestrate command definition with all subcommands",
+        "benefit": "Single entry point for all orchestrator functionality",
+        "acceptance_criteria": [
+          "commands/orchestrate.md defines the command with allowed-tools",
+          "list subcommand displays ranked tasks",
+          "status subcommand shows in-progress tasks",
+          "milestones subcommand shows per-project progress",
+          "Command is discoverable via jade help"
+        ]
+      },
+      "relevant_files": [
+        "commands/orchestrate.md"
+      ],
+      "created_at": "2026-02-02T00:00:00Z"
+    }
+  ]
+}
