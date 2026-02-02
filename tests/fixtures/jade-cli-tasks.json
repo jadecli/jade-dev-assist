@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "project": "jade-cli",
+  "milestone": { "name": "Core Commands", "target_date": "2026-03-15", "description": "Ship jade task, jade index, jade swarm commands" },
+  "tasks": [
+    {
+      "id": "jade-cli/fix-node-build",
+      "title": "Fix Node.js build configuration",
+      "description": "The TypeScript build fails because tsconfig paths are not resolved.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": ["jade-cli/add-task-create", "jade-cli/add-index-query"],
+      "milestone": "Core Commands",
+      "labels": ["bugfix", "infra"],
+      "feature": {
+        "description": "Working build pipeline for jade-cli",
+        "benefit": "Unblocks all command implementations that depend on a working build",
+        "acceptance_criteria": ["npm run build exits 0", "npx vitest run passes all 43 existing tests", "Built output in build/ can be executed with node build/index.js"]
+      },
+      "github_issue": "jadecli/jade-cli#1",
+      "relevant_files": ["tsconfig.json", "vitest.config.ts", "package.json", "source/index.ts"],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-cli/add-task-create",
+      "title": "Add jade task create command",
+      "status": "blocked",
+      "complexity": "M",
+      "blocked_by": ["jade-cli/fix-node-build"],
+      "unlocks": [],
+      "milestone": "Core Commands",
+      "labels": ["feature"],
+      "feature": { "description": "CLI command to create tasks from the terminal", "acceptance_criteria": ["jade task create --title 'My task' creates entry"] },
+      "created_at": "2026-02-02T00:00:00Z"
+    }
+  ]
+}

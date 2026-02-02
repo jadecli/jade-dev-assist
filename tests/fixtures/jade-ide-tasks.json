@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "project": "jade-ide",
+  "milestone": { "name": "IDE Foundation" },
+  "tasks": [
+    {
+      "id": "jade-ide/research-vscode-api",
+      "title": "Research VS Code extension API for task panel",
+      "status": "pending",
+      "complexity": "XL",
+      "blocked_by": ["jade-ide/external-blocker"],
+      "unlocks": [],
+      "labels": ["docs"],
+      "feature": { "description": "Understanding VS Code extension API capabilities" },
+      "created_at": "2026-01-15T00:00:00Z"
+    }
+  ]
+}
