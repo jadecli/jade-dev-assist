@@ -235,12 +235,15 @@ queueAsync('4. executeWorker rejects or returns failure on non-zero exit', async
     try {
         const { mockSpawn } = createMockSpawn(1);
         try {
-            await executeWorker('test-project/test-task', {
+            const result = await executeWorker('test-project/test-task', {
                 projectsRoot: env.tmpdir,
                 _spawnFn: mockSpawn
             });
-            // If it resolves instead of rejecting, that's also acceptable
-            // as long as the exit code is captured
+            // If it resolves instead of rejecting, verify exit code is captured
+            assert(
+                result.exitCode === 1 || result.exitCode !== 0,
+                `Resolved result should capture non-zero exit code, got ${result.exitCode}`
+            );
         } catch (err) {
             // Rejection is expected for non-zero exit
             assert(
@@ -490,10 +493,15 @@ queueAsync('14. captures stderr from subprocess', async () => {
     try {
         const { mockSpawn } = createMockSpawn(1);
         try {
-            await executeWorker('test-project/test-task', {
+            const result = await executeWorker('test-project/test-task', {
                 projectsRoot: env.tmpdir,
                 _spawnFn: mockSpawn
             });
+            // If resolved, verify stderr was captured on the result
+            assert(
+                typeof result.stderr === 'string',
+                `Resolved result should capture stderr, got ${typeof result.stderr}`
+            );
         } catch (err) {
             assert(
                 typeof err.stderr === 'string' || typeof err.message === 'string',
