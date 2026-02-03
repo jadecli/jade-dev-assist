@@ -276,6 +276,117 @@
           "to_status": "completed"
         }
       ]
+    },
+    {
+      "id": "jade-dev-assist/structured-error-logging",
+      "title": "Add structured error logging to lib modules",
+      "description": "Replace console.error calls with structured logging. Create lib/logger.js with JSON output format including timestamp, level, module, message, and error details. Support LOG_LEVEL environment variable.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": ["feature", "observability"],
+      "feature": {
+        "description": "Structured JSON logging for all lib modules",
+        "benefit": "Machine-parseable logs for debugging and monitoring orchestrator runs",
+        "acceptance_criteria": [
+          "lib/logger.js exports log functions (info, warn, error, debug)",
+          "Output is JSON with timestamp, level, module, message fields",
+          "LOG_LEVEL env var controls verbosity (debug, info, warn, error)",
+          "All lib modules use logger instead of console.error",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/logger.js",
+        "lib/scanner.js",
+        "lib/scorer.js",
+        "lib/dispatcher.js",
+        "lib/executor.js"
+      ],
+      "created_at": "2026-02-02T20:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/token-estimation",
+      "title": "Add token estimation to dispatcher",
+      "description": "Currently the dispatcher builds prompts but doesn't verify they're under the 60K token budget. Add a token estimation function (characters/4 as approximation) and warn or truncate if the prompt exceeds the budget.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Token budget enforcement in dispatcher",
+        "benefit": "Prevent worker dispatch failures due to oversized prompts",
+        "acceptance_criteria": [
+          "lib/dispatcher.js estimates tokens before dispatch",
+          "Warns if prompt exceeds 60K token budget",
+          "Optionally truncates relevant_files content to fit budget",
+          "Token estimate logged for debugging",
+          "npm test passes with tests for budget enforcement"
+        ]
+      },
+      "relevant_files": [
+        "lib/dispatcher.js",
+        "tests/test-dispatcher.js"
+      ],
+      "created_at": "2026-02-02T20:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/integration-tests",
+      "title": "Add integration tests for full orchestration cycle",
+      "description": "Add tests that verify the full orchestration cycle: scan -> score -> select -> dispatch -> complete. Use mock tasks.json files and mock claude subprocess. Verify status updates propagate correctly.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": ["test", "integration"],
+      "feature": {
+        "description": "End-to-end integration tests for orchestration workflow",
+        "benefit": "Confidence that all orchestrator components work together correctly",
+        "acceptance_criteria": [
+          "Integration test creates mock projects.json and tasks.json",
+          "Test runs full scan -> score -> dispatch cycle",
+          "Test verifies task status updated to in_progress on dispatch",
+          "Test verifies task status updated to completed on success",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "tests/test-integration.js",
+        "tests/fixtures/"
+      ],
+      "created_at": "2026-02-02T20:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/pre-commit-hooks",
+      "title": "Add pre-commit hooks for validation",
+      "description": "Add husky pre-commit hook that runs: npm test (quick), node scripts/validate-plugin.js. This catches broken tests and invalid plugin structure before commit.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": ["infra"],
+      "feature": {
+        "description": "Pre-commit validation for tests and plugin structure",
+        "benefit": "Prevent broken commits from being pushed",
+        "acceptance_criteria": [
+          ".husky/pre-commit runs npm test and validate-plugin.js",
+          "Commit blocked if tests fail",
+          "Commit blocked if plugin validation fails",
+          "Hook is fast (<30s)"
+        ]
+      },
+      "relevant_files": [
+        ".husky/pre-commit",
+        "package.json",
+        "scripts/validate-plugin.js"
+      ],
+      "created_at": "2026-02-02T20:00:00Z"
     }
   ]
 }
