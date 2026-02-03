@@ -281,7 +281,7 @@
       "id": "jade-dev-assist/structured-error-logging",
       "title": "Add structured error logging to lib modules",
       "description": "Replace console.error calls with structured logging. Create lib/logger.js with JSON output format including timestamp, level, module, message, and error details. Support LOG_LEVEL environment variable.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "S",
       "blocked_by": [],
       "unlocks": [],
@@ -305,13 +305,14 @@
         "lib/dispatcher.js",
         "lib/executor.js"
       ],
-      "created_at": "2026-02-02T20:00:00Z"
+      "created_at": "2026-02-02T20:00:00Z",
+      "completed_at": "2026-02-03T12:00:00Z"
     },
     {
       "id": "jade-dev-assist/token-estimation",
       "title": "Add token estimation to dispatcher",
       "description": "Currently the dispatcher builds prompts but doesn't verify they're under the 60K token budget. Add a token estimation function (characters/4 as approximation) and warn or truncate if the prompt exceeds the budget.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "S",
       "blocked_by": [],
       "unlocks": [],
@@ -332,13 +333,14 @@
         "lib/dispatcher.js",
         "tests/test-dispatcher.js"
       ],
-      "created_at": "2026-02-02T20:00:00Z"
+      "created_at": "2026-02-02T20:00:00Z",
+      "completed_at": "2026-02-03T12:00:00Z"
     },
     {
       "id": "jade-dev-assist/integration-tests",
       "title": "Add integration tests for full orchestration cycle",
       "description": "Add tests that verify the full orchestration cycle: scan -> score -> select -> dispatch -> complete. Use mock tasks.json files and mock claude subprocess. Verify status updates propagate correctly.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "M",
       "blocked_by": [],
       "unlocks": [],
@@ -359,13 +361,14 @@
         "tests/test-integration.js",
         "tests/fixtures/"
       ],
-      "created_at": "2026-02-02T20:00:00Z"
+      "created_at": "2026-02-02T20:00:00Z",
+      "completed_at": "2026-02-03T12:00:00Z"
     },
     {
       "id": "jade-dev-assist/pre-commit-hooks",
       "title": "Add pre-commit hooks for validation",
       "description": "Add husky pre-commit hook that runs: npm test (quick), node scripts/validate-plugin.js. This catches broken tests and invalid plugin structure before commit.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "S",
       "blocked_by": [],
       "unlocks": [],
@@ -386,7 +389,8 @@
         "package.json",
         "scripts/validate-plugin.js"
       ],
-      "created_at": "2026-02-02T20:00:00Z"
+      "created_at": "2026-02-02T20:00:00Z",
+      "completed_at": "2026-02-03T12:00:00Z"
     }
   ]
 }
