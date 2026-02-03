@@ -283,19 +283,28 @@ test('9. scanTasks handles malformed JSON gracefully (warns, continues with othe
         }
     });
     try {
-        // Capture console.warn output
-        const originalWarn = console.warn;
-        let warnCalled = false;
-        let tasks;
-        console.warn = function () { warnCalled = true; };
+        // Capture stderr output (logger writes warn/error to stderr as JSON)
+        const originalWrite = process.stderr.write.bind(process.stderr);
+        let stderrOutput = '';
+        process.stderr.write = function (chunk) {
+            stderrOutput += chunk;
+            return originalWrite(chunk);
+        };
 
+        let tasks;
         try {
             tasks = scanTasks({ registryPath: env.registryPath });
         } finally {
-            console.warn = originalWarn;
+            process.stderr.write = originalWrite;
         }
 
-        assert(warnCalled, 'Expected console.warn to be called for malformed JSON');
+        // Verify JSON log output was written to stderr
+        assert(stderrOutput.length > 0, 'Expected logger output to stderr');
+        const logEntry = JSON.parse(stderrOutput.trim());
+        assert(logEntry.level === 'warn', `Expected level warn, got ${logEntry.level}`);
+        assert(logEntry.module === 'scanner', `Expected module scanner, got ${logEntry.module}`);
+        assert(logEntry.project === 'bad-project', 'Expected project name in log');
+
         assert(Array.isArray(tasks), 'Expected tasks to be an array');
         assert(tasks.length === 1, `Expected 1 task from jade-index, got ${tasks.length}`);
         assert(tasks[0].id === 'jade-index/add-semantic-search', 'Expected the jade-index task');
