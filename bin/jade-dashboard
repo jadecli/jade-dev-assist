@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Launch the jade-dev-assist task dashboard.
+# Uses uv to install rich on-the-fly (cached after first run).
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+exec uv run --with rich python3 "$SCRIPT_DIR/dashboard.py" "$@"

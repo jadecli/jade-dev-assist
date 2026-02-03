@@ -7,7 +7,7 @@
     "test": "node tests/test-runner.js",
     "validate": "node scripts/validate-plugin.js .",
     "lint": "eslint scripts/ --ext .js",
-    "prepare": "npm run validate"
+    "prepare": "husky && npm run validate"
   },
   "keywords": [
     "claude-code",
@@ -33,7 +33,11 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "husky": "^9.0.0"
+  },
   "claude-plugin": {
     "manifest": ".claude-plugin/plugin.json",
     "minVersion": "2.1.0"

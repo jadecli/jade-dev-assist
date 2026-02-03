@@ -97,7 +97,7 @@
       "id": "jade-dev-assist/implement-dispatcher",
       "title": "Implement lib/dispatcher.js - worker dispatch",
       "description": "Implement the worker dispatch module that constructs a swarm worker prompt and launches it in the target project directory. Read the task details, project CLAUDE.md, and relevant files. Enforce the 60K token initial prompt cap. Set working directory and dispatch with max_turns: 25.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "L",
       "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
       "unlocks": [],
@@ -176,6 +176,106 @@
         "commands/orchestrate.md"
       ],
       "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/worker-execution",
+      "title": "Add worker execution module",
+      "description": "Add lib/executor.js that spawns a Claude Code subprocess with the dispatcher-built prompt. The executor should: (1) call dispatchWorker() to get the prompt, (2) spawn 'claude --print --dangerouslySkipPermissions' as a child process with the prompt on stdin, (3) stream stdout/stderr, (4) on completion, update task status to completed/failed. Add tests with mocked child_process.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": ["jade-dev-assist/status-updater"],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Actually spawn Claude Code workers from the orchestrator",
+        "benefit": "Closes the loop from task ranking to actual execution",
+        "acceptance_criteria": [
+          "executor.js exports executeWorker(taskId, options) function",
+          "Spawns claude subprocess with --print flag and dispatcher prompt",
+          "Streams worker stdout/stderr to caller",
+          "Updates task status to completed on success, failed on error",
+          "Records execution history with timestamps in tasks.json",
+          "Tests verify spawn, status updates, and error handling",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/executor.js",
+        "lib/dispatcher.js",
+        "tests/test-executor.js"
+      ],
+      "created_at": "2026-02-02T14:30:00Z",
+      "completed_at": "2026-02-02T15:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/status-updater",
+      "title": "Add status-updater and milestone-tracker",
+      "description": "Add lib/status-updater.js that tracks worker completion and updates task status back to completed. Add lib/milestone-tracker.js that computes milestone progress (X/Y tasks done) and can update roadmap/current.md. Tests for both modules.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": ["jade-dev-assist/worker-execution"],
+      "unlocks": [],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Automated status tracking and milestone progress reporting",
+        "benefit": "Closes the feedback loop so orchestrator always has current task state",
+        "acceptance_criteria": [
+          "status-updater.js watches for worker completion and updates tasks.json",
+          "milestone-tracker.js computes per-project and overall completion percentages",
+          "milestone-tracker can render a progress summary table",
+          "Tests verify status transitions and milestone calculations",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/status-updater.js",
+        "lib/milestone-tracker.js",
+        "tests/test-status-updater.js",
+        "tests/test-milestone-tracker.js"
+      ],
+      "created_at": "2026-02-02T14:30:00Z",
+      "completed_at": "2026-02-02T16:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/model-tier-dispatch",
+      "title": "Update executor for tiered model dispatch",
+      "description": "Update lib/executor.js to support tiered model dispatch. Add a modelTier field to task definitions: 'opus' (default) for code generation and decisions, 'local' for utility tasks (linting, docstrings, simple renames). When tier is 'local', executor spawns claude with --model qwen3-coder pointing at localhost:11434 (Ollama). When tier is 'opus', uses default Claude API. Add OLLAMA_BASE_URL config. Tests should verify both tiers dispatch correctly.",
+      "status": "completed",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator MVP",
+      "labels": ["feature"],
+      "feature": {
+        "description": "Tiered model dispatch -- Opus for code gen, local models for utility tasks",
+        "benefit": "Save API tokens by routing trivial tasks to free local inference",
+        "acceptance_criteria": [
+          "Task definitions support modelTier field (opus/local)",
+          "executor.js passes --model flag when tier is local",
+          "OLLAMA_BASE_URL configurable (default localhost:11434)",
+          "Default tier is opus when not specified",
+          "Tests verify opus tier uses default claude command",
+          "Tests verify local tier adds --model and ANTHROPIC_BASE_URL",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/executor.js",
+        "lib/dispatcher.js",
+        "tests/test-executor.js"
+      ],
+      "created_at": "2026-02-02T16:00:00Z",
+      "completed_at": "2026-02-02T17:00:00Z",
+      "updated_at": "2026-02-02T17:00:00Z",
+      "history": [
+        {
+          "timestamp": "2026-02-02T17:00:00Z",
+          "from_status": "pending",
+          "to_status": "completed"
+        }
+      ]
     }
   ]
 }

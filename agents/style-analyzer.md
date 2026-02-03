@@ -1,7 +1,8 @@
 ---
 name: style-analyzer
 description: Analyzes codebase patterns and generates project-specific CLAUDE.md rules, ruff config, ty config, and jade-style.md rules.
-model: sonnet
+model: opus
+max_turns: 25
 tools: Read, Glob, Grep, Bash
 skills:
   - jade-dev-assist:style-configurator

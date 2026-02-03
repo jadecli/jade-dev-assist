@@ -1,7 +1,8 @@
 ---
 name: workflow-planner
 description: Plans development workflows by reading the roadmap repo, checking GitHub Projects board status, and proposing next tasks with dependency ordering.
-model: sonnet
+model: opus
+max_turns: 25
 tools: Read, Glob, Grep, Bash
 skills:
   - jade-dev-assist:roadmap-updater

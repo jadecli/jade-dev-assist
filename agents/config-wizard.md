@@ -1,7 +1,8 @@
 ---
 name: config-wizard
 description: Interactive setup wizard for jadecli projects. Configures chezmoi, conventional commits, Graphite, release-please, and Claude Code settings.
-model: haiku
+model: opus
+max_turns: 25
 tools: Read, Write, Edit, Bash, Glob
 ---
 
