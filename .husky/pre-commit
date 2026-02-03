@@ -1,0 +1,27 @@
+# Pre-commit hook for jade-dev-assist
+# Runs quick tests and plugin validation (<30s target)
+
+# Add mise shims to PATH if available
+if [ -d "$HOME/.local/share/mise/shims" ]; then
+    export PATH="$HOME/.local/share/mise/shims:$PATH"
+fi
+
+echo "Running pre-commit checks..."
+
+# Run quick tests
+echo "  [1/2] Running tests..."
+npm test
+if [ $? -ne 0 ]; then
+    echo "Tests failed. Commit aborted."
+    exit 1
+fi
+
+# Validate plugin structure
+echo "  [2/2] Validating plugin structure..."
+node scripts/validate-plugin.js .
+if [ $? -ne 0 ]; then
+    echo "Plugin validation failed. Commit aborted."
+    exit 1
+fi
+
+echo "Pre-commit checks passed."
