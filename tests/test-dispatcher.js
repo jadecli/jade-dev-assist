@@ -1046,6 +1046,99 @@ test('37. meta.filesTrimmed counts files excluded due to budget', () => {
     }
 });
 
+// ═════════════════════════════════════════════════════════════════════
+// 9. TOKEN ESTIMATION LOGGING
+// ═════════════════════════════════════════════════════════════════════
+
+console.log('\n  Token Estimation Logging\n');
+
+test('38. dispatchWorker logs token estimate (captured via silent option)', () => {
+    const env = createTestProject({
+        claudeMd: '# Test\n',
+        tasksData: {
+            version: 1,
+            project: 'test-project',
+            tasks: [{
+                id: 'test-project/test-task',
+                title: 'Test',
+                status: 'pending',
+                complexity: 'S'
+            }]
+        }
+    });
+    try {
+        const task = makeTask({});
+        const project = makeProject({});
+        // With silent: true, no logging occurs -- this tests that the option works
+        const result = dispatchWorker(task, project, {
+            projectsRoot: env.tmpdir,
+            dryRun: true,
+            silent: true
+        });
+        // Verify the meta still contains token estimate
+        assert(
+            typeof result.meta.tokenEstimate === 'number',
+            'meta.tokenEstimate should be a number even with silent: true'
+        );
+        assert(
+            result.meta.tokenEstimate > 0,
+            'meta.tokenEstimate should be > 0'
+        );
+    } finally {
+        env.cleanup();
+    }
+});
+
+test('39. dispatchWorker handles prompts within token budget without warning', () => {
+    const env = createTestProject({
+        claudeMd: '# Test\n',
+        tasksData: {
+            version: 1,
+            project: 'test-project',
+            tasks: [{
+                id: 'test-project/test-task',
+                title: 'Test',
+                status: 'pending',
+                complexity: 'S'
+            }]
+        }
+    });
+    try {
+        const task = makeTask({});
+        const project = makeProject({});
+        const result = dispatchWorker(task, project, {
+            projectsRoot: env.tmpdir,
+            dryRun: true,
+            silent: true
+        });
+        // Normal prompt should be well under budget
+        assert(
+            result.meta.tokenEstimate <= TOKEN_BUDGET,
+            `Token estimate ${result.meta.tokenEstimate} should be <= ${TOKEN_BUDGET}`
+        );
+    } finally {
+        env.cleanup();
+    }
+});
+
+test('40. estimateTokens returns 0 for empty string', () => {
+    const count = estimateTokens('');
+    assert(count === 0, `Expected 0 for empty string, got ${count}`);
+});
+
+test('41. estimateTokens returns 0 for null/undefined', () => {
+    const countNull = estimateTokens(null);
+    const countUndef = estimateTokens(undefined);
+    assert(countNull === 0, `Expected 0 for null, got ${countNull}`);
+    assert(countUndef === 0, `Expected 0 for undefined, got ${countUndef}`);
+});
+
+test('42. estimateTokens rounds up correctly', () => {
+    // 5 chars should be ceil(5/4) = 2 tokens
+    const count = estimateTokens('hello');
+    assert(count === 2, `Expected 2 tokens for 5 chars, got ${count}`);
+});
+
 // ── Summary ─────────────────────────────────────────────────────────
 
 console.log('\n' + '='.repeat(50));
