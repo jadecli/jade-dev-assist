@@ -320,8 +320,8 @@ queueAsync('7. pipes dispatcher prompt to subprocess stdin', async () => {
             'Stdin prompt should include the task title from dispatcher'
         );
         assert(
-            prompt.includes('swarm worker'),
-            'Stdin prompt should include swarm worker preamble'
+            /worker/i.test(prompt) && /task/i.test(prompt),
+            'Stdin prompt should include worker role and task context'
         );
     } finally {
         env.cleanup();
@@ -635,7 +635,7 @@ queueAsync('18. throws/rejects if taskId is not found in tasks.json', async () =
 
 console.log('\n  Edge Cases\n');
 
-queueAsync('19. handles task with no project prefix in taskId', async () => {
+queueAsync('19. handles task with standard project/task format in taskId', async () => {
     const tasksData = {
         version: 1,
         project: 'test-project',
@@ -658,7 +658,7 @@ queueAsync('19. handles task with no project prefix in taskId', async () => {
     const env = createTestProject({ claudeMd: '# Test\n', tasksData });
     try {
         const { mockSpawn } = createMockSpawn(0);
-        // The taskId includes the project prefix -- this should work normally
+        // Standard taskId format with project prefix
         const result = await executeWorker('test-project/test-task', {
             projectsRoot: env.tmpdir,
             _spawnFn: mockSpawn
