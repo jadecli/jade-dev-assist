@@ -283,7 +283,7 @@ console.log('\n  Integration: Scan Phase\n');
 test('1. scanTasks loads tasks from all projects in registry', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         assert(Array.isArray(tasks), 'Expected array of tasks');
         assert(tasks.length === 3, `Expected 3 tasks total, got ${tasks.length}`);
 
@@ -328,7 +328,7 @@ test('2. scanTasks handles projects with missing tasks.json gracefully', () => {
     }
 
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         assert(tasks.length === 1, `Expected 1 task from existing project, got ${tasks.length}`);
         assert(tasks[0].id === 'has-tasks/task1', 'Should find task from project with tasks.json');
     } finally {
@@ -345,7 +345,7 @@ console.log('\n  Integration: Score Phase\n');
 test('3. scoreTasks ranks tasks by priority score', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
 
         assert(scored.length > 0, 'Should have scored tasks');
@@ -389,7 +389,7 @@ test('4. scoreTasks filters out completed tasks', () => {
         }
     });
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
 
         assert(scored.length === 1, `Expected 1 pending task, got ${scored.length}`);
@@ -403,7 +403,7 @@ test('4. scoreTasks filters out completed tasks', () => {
 test('5. scoreTasks considers dependency status in scoring', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
 
         // Find the dependent task (blocked by another task)
@@ -428,7 +428,7 @@ console.log('\n  Integration: Dispatch Phase\n');
 test('6. dispatchWorker builds prompt and updates status to in_progress', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
         const topTask = scored[0];
         const project = topTask._project;
@@ -461,7 +461,7 @@ test('6. dispatchWorker builds prompt and updates status to in_progress', () => 
 test('7. dispatchWorker includes relevant files in prompt', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -484,7 +484,7 @@ test('7. dispatchWorker includes relevant files in prompt', () => {
 test('8. dispatchWorker adds history entry on status change', () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -523,7 +523,7 @@ function queueAsync(name, fn) {
 queueAsync('9. watchWorkerCompletion updates status to completed on exit 0', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -555,7 +555,7 @@ queueAsync('9. watchWorkerCompletion updates status to completed on exit 0', asy
 queueAsync('10. successful completion adds history entry', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -585,7 +585,7 @@ queueAsync('10. successful completion adds history entry', async () => {
 queueAsync('11. completion result includes stdout and completedAt', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -619,7 +619,7 @@ console.log('\n  Integration: Worker Completion - Failure\n');
 queueAsync('12. watchWorkerCompletion updates status to failed on non-zero exit', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -648,7 +648,7 @@ queueAsync('12. watchWorkerCompletion updates status to failed on non-zero exit'
 queueAsync('13. failed completion adds history entry with error details', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -680,7 +680,7 @@ queueAsync('13. failed completion adds history entry with error details', async 
 queueAsync('14. failure result includes stderr', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const topTask = tasks.find(t => t.id === 'test-project-a/task-high-priority');
         const project = topTask._project;
 
@@ -713,7 +713,7 @@ queueAsync('15. full cycle: scan -> score -> dispatch -> complete', async () => 
     const env = createTestEnvironment();
     try {
         // Phase 1: Scan
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         assert(tasks.length === 3, `Expected 3 tasks from scan, got ${tasks.length}`);
 
         // Phase 2: Score
@@ -767,7 +767,7 @@ queueAsync('16. full cycle: scan -> score -> dispatch -> fail', async () => {
     const env = createTestEnvironment();
     try {
         // Scan and score
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
         const topTask = scored[0];
         const project = topTask._project;
@@ -827,7 +827,7 @@ queueAsync('17. multiple workers can run in sequence', async () => {
     });
     try {
         // First worker
-        let tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        let tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         let scored = scoreTasks(tasks);
         const task1 = scored[0];
 
@@ -843,7 +843,7 @@ queueAsync('17. multiple workers can run in sequence', async () => {
         });
 
         // Second worker (re-scan and re-score)
-        tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         scored = scoreTasks(tasks);
 
         // Should now only have 1 pending task (task1 is completed)
@@ -865,7 +865,7 @@ queueAsync('17. multiple workers can run in sequence', async () => {
         });
 
         // Both tasks should now be completed
-        tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         scored = scoreTasks(tasks);
         assert(scored.length === 0,
             `Expected 0 pending tasks after both completions, got ${scored.length}`);
@@ -888,7 +888,7 @@ test('18. handles empty task list gracefully', () => {
         }
     });
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         assert(tasks.length === 0, `Expected 0 tasks, got ${tasks.length}`);
 
         const scored = scoreTasks(tasks);
@@ -917,7 +917,7 @@ test('19. handles all tasks already completed', () => {
         }
     });
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         assert(tasks.length === 1, 'Should find 1 task (completed)');
 
         const scored = scoreTasks(tasks);
@@ -930,7 +930,7 @@ test('19. handles all tasks already completed', () => {
 queueAsync('20. handles delayed worker completion', async () => {
     const env = createTestEnvironment();
     try {
-        const tasks = scanTasks({ registryPath: env.projectsJsonPath });
+        const tasks = scanTasks({ registryPath: env.projectsJsonPath }).tasks;
         const scored = scoreTasks(tasks);
         const topTask = scored[0];
 
