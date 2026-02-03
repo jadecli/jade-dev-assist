@@ -391,6 +391,36 @@
       ],
       "created_at": "2026-02-02T20:00:00Z",
       "completed_at": "2026-02-03T12:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/scanner-error-recovery",
+      "title": "Add scanner error recovery for malformed task files",
+      "description": "Currently lib/scanner.js skips malformed JSON files with a warning. Enhance error recovery to: (1) attempt to parse partial JSON and extract valid tasks, (2) detect and report specific JSON syntax errors with line numbers, (3) validate task schema and report missing required fields, (4) collect all errors and report at end rather than failing fast, (5) optionally auto-fix common issues (trailing commas, missing quotes). This makes the scanner more robust when task files are hand-edited.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": ["feature", "reliability"],
+      "feature": {
+        "description": "Robust error recovery and validation for malformed task files",
+        "benefit": "Better developer experience when task files have typos or formatting issues",
+        "acceptance_criteria": [
+          "Scanner reports JSON syntax errors with file path and line number",
+          "Scanner validates task schema and reports missing required fields",
+          "Scanner collects all errors across all files before returning",
+          "Scanner returns partial results (valid tasks from valid files)",
+          "Errors logged at WARNING level with actionable messages",
+          "Optional --strict flag to fail on any validation error",
+          "Tests verify error recovery with various malformed inputs",
+          "npm test passes"
+        ]
+      },
+      "relevant_files": [
+        "lib/scanner.js",
+        "tests/test-scanner.js"
+      ],
+      "created_at": "2026-02-03T18:00:00Z"
     }
   ]
 }
