@@ -44,6 +44,9 @@ claude plugin install ./jade-dev-assist --scope user
 ## Quick Start
 
 ```bash
+# View live dashboard of all jadecli ecosystem tasks
+jade-dashboard
+
 # Initialize a new project with JADE-DEV-ASSIST
 /jade:init my-project --template typescript-react
 
@@ -241,6 +244,9 @@ git clone https://github.com/jadecli/jade-dev-assist.git
 cd jade-dev-assist
 npm install
 npm test
+
+# Launch the live task dashboard
+bin/jade-dashboard
 ```
 
 ### Running Tests

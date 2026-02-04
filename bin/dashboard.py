@@ -2,8 +2,8 @@
 """jade-dev-assist task dashboard -- live view of orchestrator task queues.
 
 Usage:
-    uv run --with rich python dashboard.py
-    # or via the launcher: jade-dashboard
+    jade-dashboard    # recommended - uses launcher script
+    bin/jade-dashboard
 """
 
 import json

@@ -14,7 +14,7 @@ BUILDABLE -- Orchestrator MVP complete. 14 commands, 6 skills, 3 agents. Core li
 ```bash
 npm test                          # run tests
 node scripts/validate-plugin.js . # validate plugin structure
-uv run --with rich python bin/dashboard.py  # launch dashboard (needs ~/.jade/projects.json)
+bin/jade-dashboard                # launch dashboard (needs ~/.jade/projects.json)
 ```
 
 ## Project Structure
