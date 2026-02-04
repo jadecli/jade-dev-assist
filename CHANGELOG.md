@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.0](https://github.com/jadecli/jade-dev-assist/compare/jade-dev-assist-v1.0.0...jade-dev-assist-v1.1.0) (2026-02-04)
+
+
+### Features
+
+* add complete plugin structure with commands, skills, agents, and hooks ([d086c09](https://github.com/jadecli/jade-dev-assist/commit/d086c09e8639a63faa172b5ae57f67703b803648))
+* add orchestrate command definition ([a3eedb5](https://github.com/jadecli/jade-dev-assist/commit/a3eedb5d37cebd7c7fc34215125899c34badd709))
+* **dispatcher:** add token estimation logging and budget warnings ([e6da367](https://github.com/jadecli/jade-dev-assist/commit/e6da3672e3281b279f19815a5394e4c6298c1c42))
+* **github:** add GitHub Projects sync module and scripts ([5dead47](https://github.com/jadecli/jade-dev-assist/commit/5dead47319b7066d39f7a06a330e4366449ca596))
+* **husky:** add pre-commit hook for test and validation ([ee915b8](https://github.com/jadecli/jade-dev-assist/commit/ee915b83111d6feb90ce823975548e84b2bbaa41))
+* implement lib/presenter.js ([48fd472](https://github.com/jadecli/jade-dev-assist/commit/48fd47291b30f64a097a4dd90139874b9f6b320d))
+* implement lib/scanner.js ([6d75b63](https://github.com/jadecli/jade-dev-assist/commit/6d75b6378ba907e9064f0315e2a0c50f54de4c22))
+* implement lib/scorer.js ([009673f](https://github.com/jadecli/jade-dev-assist/commit/009673f85f5a377dc5a8f07d3f30a45920c62ad5))
+* **lib:** add structured JSON logger and integrate across modules ([90285db](https://github.com/jadecli/jade-dev-assist/commit/90285db0e14a376540790835fe1f3bfebadaa4de))
+* Phase 3 tiered dispatch, jade-pr script, and CI ([#1](https://github.com/jadecli/jade-dev-assist/issues/1)) ([6787527](https://github.com/jadecli/jade-dev-assist/commit/6787527b9c69f6a8a6a6acf189a7126f4986497e))
+* **scanner:** add error recovery for malformed task files ([7817b47](https://github.com/jadecli/jade-dev-assist/commit/7817b47761cd2dd34b968f19315d1a22f3ce7612))
+
 ## [1.0.0](https://github.com/jadecli/jade-dev-assist/compare/v0.0.0...v1.0.0) (2026-02-02)
 
 

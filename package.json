@@ -1,6 +1,6 @@
 {
   "name": "jade-dev-assist",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Advanced Claude Code plugin for JADE-IDE development workflow management with three-tier personalization",
   "main": "scripts/index.js",
   "scripts": {
