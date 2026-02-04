@@ -775,6 +775,82 @@
         "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/5"
       ],
       "created_at": "2026-02-04T22:22:57.229Z"
+    },
+    {
+      "id": "jade-dev-assist/implement-plan-command",
+      "title": "Implement /jade:plan command and workflow",
+      "description": "Implement the /jade:plan command based on Boris Cherny Tip #2 - 'Start in plan mode for complex tasks'. Create lib/planner.js with plan mode activation workflow, planning checklist generation, plan review via subagent (spawn second Claude as staff engineer reviewer), and verification step tracking. Include comprehensive test coverage in tests/test-planner.js following TDD patterns.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": [
+        "feature",
+        "workflow"
+      ],
+      "feature": {
+        "description": "Planning workflow following Boris Cherny best practices",
+        "benefit": "Pour energy into planning so Claude can 1-shot implementation",
+        "acceptance_criteria": [
+          "✅ lib/planner.js implements startPlanMode, reviewPlan, verifyPlan, replan",
+          "✅ generatePlanningChecklist supports complexity levels (S, M, L, XL)",
+          "✅ reviewPlan generates staff engineer review prompt for subagent",
+          "✅ Review prompt uses extended thinking for deep analysis",
+          "✅ Comprehensive test coverage in tests/test-planner.js",
+          "✅ All 31 tests passing",
+          "✅ Integration with commands/plan.md spec"
+        ]
+      },
+      "relevant_files": [
+        "lib/planner.js",
+        "tests/test-planner.js",
+        "commands/plan.md",
+        "docs/research/boris-cherny-tips.md"
+      ],
+      "created_at": "2026-02-04T22:50:00Z",
+      "completed_at": "2026-02-04T22:55:00Z"
+    },
+    {
+      "id": "jade-dev-assist/implement-fix-command",
+      "title": "Implement /jade:fix command for autonomous bug fixing",
+      "description": "Implement Boris Cherny Tip #5 - 'Claude fixes most bugs by itself'. Create lib/fixer.js with CI integration (GitHub Actions via gh CLI), log analysis (parse test output, stack traces), root cause analysis workflow, and auto-fix + test verification cycle. Create lib/ci-integrations.js for GitHub Actions integration. Include comprehensive test coverage in tests/test-fixer.js following TDD patterns.",
+      "status": "completed",
+      "complexity": "L",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": [
+        "feature",
+        "autonomous",
+        "debugging"
+      ],
+      "feature": {
+        "description": "Autonomous bug fixing with zero context switching",
+        "benefit": "Claude fixes bugs by itself from CI failures, logs, or descriptions",
+        "acceptance_criteria": [
+          "✅ lib/fixer.js implements parseTestFailures, parseStackTrace, extractErrorPatterns",
+          "✅ lib/fixer.js implements parseLogOutput for log analysis",
+          "✅ lib/fixer.js implements analyzeRootCause for identifying problem files",
+          "✅ lib/fixer.js implements generateFixPrompt with extended thinking support",
+          "✅ lib/fixer.js implements verifyFix for test verification",
+          "✅ lib/fixer.js implements fixBug main workflow (ci, logs, description sources)",
+          "✅ lib/ci-integrations.js for GitHub Actions integration via gh CLI",
+          "✅ Comprehensive test coverage in tests/test-fixer.js",
+          "✅ All 15 tests passing",
+          "✅ Integration with commands/fix.md spec",
+          "✅ Documentation updated with implementation notes"
+        ]
+      },
+      "relevant_files": [
+        "lib/fixer.js",
+        "lib/ci-integrations.js",
+        "tests/test-fixer.js",
+        "commands/fix.md",
+        "docs/reference-index.md"
+      ],
+      "created_at": "2026-02-04T22:45:00Z",
+      "completed_at": "2026-02-04T22:50:30Z"
     }
   ]
 }

@@ -244,6 +244,49 @@ That didn't work. Try again.
 }
 ```
 
+## Implementation
+
+### Modules
+
+**lib/fixer.js** - Core bug fixing logic:
+- `parseTestFailures()` - Extract test failures from CI output (Jest, Mocha, etc.)
+- `parseStackTrace()` - Parse stack traces for file/line info
+- `extractErrorPatterns()` - Identify error types (TypeError, ValidationError, etc.)
+- `parseLogOutput()` - Parse JSON and standard log formats
+- `analyzeRootCause()` - Identify likely problem files and error patterns
+- `generateFixPrompt()` - Create detailed Claude prompt with extended thinking support
+- `verifyFix()` - Run tests to verify fix works
+- `fixBug()` - Main workflow orchestrator
+
+**lib/ci-integrations.js** - GitHub Actions integration:
+- `checkGhCli()` - Verify gh CLI is available and authenticated
+- `getLatestCiRun()` - Fetch latest CI run information
+- `getCiRunLogs()` - Get complete logs from a CI run
+- `getFailedJobs()` - Extract failed jobs from a run
+- `getLatestCiFailure()` - Find and analyze latest failure
+- `extractTestCommand()` - Parse test command from workflow file
+
+### Test Coverage
+
+**tests/test-fixer.js** - 15 comprehensive tests:
+- Error parsing (test failures, stack traces, patterns)
+- Log analysis (errors, warnings, timestamps)
+- Root cause analysis (single/multiple failures)
+- Fix generation (prompts, extended thinking)
+- Verification (test execution, success/failure)
+- Integration (full workflow, multiple sources)
+
+All tests passing ✓
+
+### Design Decisions
+
+1. **TDD Approach**: Tests written first, then implementation
+2. **Extended Thinking**: Enabled for low confidence (<50%) or complex bugs (>3 failures)
+3. **Modular Design**: Separate parsing, analysis, and generation logic
+4. **Framework Agnostic**: Supports Jest, Mocha, generic test runners
+5. **Log Format Support**: JSON logs, syslog, custom formats
+6. **CI Provider**: GitHub Actions via gh CLI (extensible to other providers)
+
 ## Related Commands
 
 - `/jade:logs analyze` - Deep log analysis
