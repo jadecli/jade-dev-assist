@@ -35,6 +35,10 @@
   "engines": {
     "node": ">=18.0.0"
   },
+  "dependencies": {
+    "jade-swarm-superpowers": "file:../jade-swarm",
+    "pg": "^8.13.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
