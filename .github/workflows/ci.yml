@@ -23,3 +23,12 @@ jobs:
       - name: Test
         run: npm test
         continue-on-error: true  # test-plugin requires .claude-plugin/ (not in repo)
+      - name: Generate Coverage Report
+        run: npm run test:coverage
+        continue-on-error: true
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false
+        continue-on-error: true

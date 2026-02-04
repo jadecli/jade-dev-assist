@@ -1,7 +1,7 @@
 ---
 name: jade:subagent
 description: Use subagents to throw more compute at problems and keep context clean
-argument-hint: "[explore | parallel <n> | route]"
+argument-hint: '[explore | parallel <n> | route]'
 allowed-tools: [Read, Write, Bash, Glob, Grep, Teammate]
 ---
 
@@ -17,16 +17,17 @@ allowed-tools: [Read, Write, Bash, Glob, Grep, Teammate]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
 | `explore <topic>` | Launch explore agents to search codebase |
-| `parallel <n>` | Run n subagents on current task |
-| `route` | Route permission requests to Opus 4.5 |
-| `status` | Show running subagents |
+| `parallel <n>`    | Run n subagents on current task          |
+| `route`           | Route permission requests to Opus 4.5    |
+| `status`          | Show running subagents                   |
 
 ## Quick Usage
 
 Just append to any request:
+
 ```
 Refactor the authentication module, use subagents
 ```
@@ -90,7 +91,7 @@ Progress: [████████░░] 80%
 
 Results:
 ✅ Subagent 1: 8 files modified
-✅ Subagent 2: 5 files modified  
+✅ Subagent 2: 5 files modified
 ✅ Subagent 3: 6 files modified
 
 Total: 19 files with error handling
@@ -133,6 +134,7 @@ See: code.claude.com/docs/en/hooks
 ### 1. Throw Compute at Problems
 
 More agents = more parallel processing power:
+
 ```
 analyze this codebase, use subagents
 ```
@@ -140,6 +142,7 @@ analyze this codebase, use subagents
 ### 2. Keep Context Clean
 
 Main agent stays focused:
+
 - Subagents handle isolated tasks
 - Results summarized back to main
 - No context pollution
@@ -147,17 +150,18 @@ Main agent stays focused:
 ### 3. Parallel Exploration
 
 Search codebase in parallel:
+
 ```
 /jade:subagent explore "how does the payment system work"
 ```
 
 ## Subagent Types
 
-| Type | Tools | Best For |
-|------|-------|----------|
-| Explore | Read, Glob, Grep | Codebase exploration |
-| Plan | Read, limited Write | Design strategy |
-| General | All tools | Complex multi-step |
+| Type    | Tools               | Best For             |
+| ------- | ------------------- | -------------------- |
+| Explore | Read, Glob, Grep    | Codebase exploration |
+| Plan    | Read, limited Write | Design strategy      |
+| General | All tools           | Complex multi-step   |
 
 ## Patterns
 
@@ -250,12 +254,12 @@ Let subagents summarize findings.
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
+| Issue                 | Solution              |
+| --------------------- | --------------------- |
 | Subagents conflicting | Reduce parallel count |
-| Context overflow | Use more subagents |
-| Slow execution | Check subagent count |
-| Permission denied | Enable route mode |
+| Context overflow      | Use more subagents    |
+| Slow execution        | Check subagent count  |
+| Permission denied     | Enable route mode     |
 
 ## Related Commands
 

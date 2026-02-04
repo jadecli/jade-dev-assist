@@ -2,9 +2,41 @@
   "version": 1,
   "projects_root": "__TMPDIR__",
   "projects": [
-    { "name": "jade-cli", "path": "jade-cli", "repo": "jadecli/jade-cli", "status": "near-buildable", "language": "typescript", "test_command": "npx vitest run", "build_command": "npm run build" },
-    { "name": "jade-index", "path": "jade-index", "repo": "jadecli/jade-index", "status": "buildable", "language": "python", "test_command": "uv run pytest", "build_command": "uv run python -m jade_index" },
-    { "name": "jade-ide", "path": "jade-ide", "repo": "jadecli/jade-ide", "status": "blocked", "language": "typescript", "test_command": null, "build_command": null, "blocked_reason": "Needs VS Code source access" },
-    { "name": "missing-project", "path": "no-such-dir", "status": "scaffolding", "language": "javascript", "test_command": null, "build_command": null }
+    {
+      "name": "jade-cli",
+      "path": "jade-cli",
+      "repo": "jadecli/jade-cli",
+      "status": "near-buildable",
+      "language": "typescript",
+      "test_command": "npx vitest run",
+      "build_command": "npm run build"
+    },
+    {
+      "name": "jade-index",
+      "path": "jade-index",
+      "repo": "jadecli/jade-index",
+      "status": "buildable",
+      "language": "python",
+      "test_command": "uv run pytest",
+      "build_command": "uv run python -m jade_index"
+    },
+    {
+      "name": "jade-ide",
+      "path": "jade-ide",
+      "repo": "jadecli/jade-ide",
+      "status": "blocked",
+      "language": "typescript",
+      "test_command": null,
+      "build_command": null,
+      "blocked_reason": "Needs VS Code source access"
+    },
+    {
+      "name": "missing-project",
+      "path": "no-such-dir",
+      "status": "scaffolding",
+      "language": "javascript",
+      "test_command": null,
+      "build_command": null
+    }
   ]
 }

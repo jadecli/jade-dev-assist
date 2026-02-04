@@ -48,14 +48,14 @@ docs/research/   claude-documentation-summary, workflow-methodologies, boris-che
 
 Source: `.claude/tasks/tasks.json` | Milestone: Orchestrator MVP (2026-03-15) -- ALL COMPLETE
 
-| ID | Title | Status |
-|----|-------|--------|
-| implement-scanner | Implement lib/scanner.js | DONE |
-| implement-scorer | Implement lib/scorer.js | DONE |
-| implement-presenter | Implement lib/presenter.js | DONE |
-| create-orchestrate-command | Create orchestrate command | DONE |
-| implement-dispatcher | Implement lib/dispatcher.js | DONE |
-| write-scanner-scorer-tests | Write TDD tests for scanner + scorer | DONE |
+| ID                         | Title                                | Status |
+| -------------------------- | ------------------------------------ | ------ |
+| implement-scanner          | Implement lib/scanner.js             | DONE   |
+| implement-scorer           | Implement lib/scorer.js              | DONE   |
+| implement-presenter        | Implement lib/presenter.js           | DONE   |
+| create-orchestrate-command | Create orchestrate command           | DONE   |
+| implement-dispatcher       | Implement lib/dispatcher.js          | DONE   |
+| write-scanner-scorer-tests | Write TDD tests for scanner + scorer | DONE   |
 
 Next milestone: status-updater.js and milestone-tracker.js (post-MVP).
 

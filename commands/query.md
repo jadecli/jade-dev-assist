@@ -1,7 +1,7 @@
 ---
 name: jade:query
 description: Use Claude for data & analytics - natural language to SQL, no more writing queries
-argument-hint: "<natural-language-query> [--db <database>]"
+argument-hint: '<natural-language-query> [--db <database>]'
 allowed-tools: [Read, Write, Bash, MCP]
 ---
 
@@ -17,23 +17,23 @@ allowed-tools: [Read, Write, Bash, MCP]
 
 ## Options
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `--db <name>` | Target database | auto-detect |
-| `--format <type>` | Output format (table, json, csv) | table |
-| `--save <file>` | Save results to file | none |
-| `--explain` | Show generated SQL | false |
+| Flag              | Description                      | Default     |
+| ----------------- | -------------------------------- | ----------- |
+| `--db <name>`     | Target database                  | auto-detect |
+| `--format <type>` | Output format (table, json, csv) | table       |
+| `--save <file>`   | Save results to file             | none        |
+| `--explain`       | Show generated SQL               | false       |
 
 ## Supported Databases
 
-| Database | CLI/MCP | Setup |
-|----------|---------|-------|
-| BigQuery | `bq` CLI | `gcloud auth` |
-| PostgreSQL | `psql` CLI | Connection string |
-| MySQL | `mysql` CLI | Connection string |
-| SQLite | `sqlite3` CLI | File path |
-| Snowflake | Snowflake MCP | MCP config |
-| Databricks | Databricks MCP | MCP config |
+| Database   | CLI/MCP        | Setup             |
+| ---------- | -------------- | ----------------- |
+| BigQuery   | `bq` CLI       | `gcloud auth`     |
+| PostgreSQL | `psql` CLI     | Connection string |
+| MySQL      | `mysql` CLI    | Connection string |
+| SQLite     | `sqlite3` CLI  | File path         |
+| Snowflake  | Snowflake MCP  | MCP config        |
+| Databricks | Databricks MCP | MCP config        |
 
 ## Examples
 
@@ -85,9 +85,10 @@ WHERE created_at >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY);
 ```
 
 Claude uses `bq` CLI:
+
 ```bash
 bq query --use_legacy_sql=false '
-SELECT 
+SELECT
   error_type,
   COUNT(*) as count
 FROM `project.logs.errors`
@@ -107,7 +108,7 @@ LIMIT 10
 ```
 📝 Generated SQL:
 
-SELECT 
+SELECT
   p.category,
   SUM(o.amount) as revenue,
   COUNT(DISTINCT o.id) as orders
@@ -144,7 +145,8 @@ ORDER BY revenue DESC;
 ```
 
 Creates `.claude/skills/analytics/SKILL.md`:
-```markdown
+
+````markdown
 ---
 name: analytics
 description: Team analytics skill for BigQuery
@@ -154,20 +156,25 @@ dependencies: google-cloud-bigquery
 # Analytics Skill
 
 ## Available Tables
+
 - `project.analytics.events` - User events
-- `project.analytics.users` - User profiles  
+- `project.analytics.users` - User profiles
 - `project.logs.errors` - Error logs
 
 ## Common Queries
+
 - DAU/MAU: Use events table, COUNT DISTINCT user_id
 - Revenue: Use orders table, SUM amount
 - Errors: Use logs table, filter by severity
 
 ## Access
+
 ```bash
 bq --project_id=your-project query
 ```
-```
+````
+
+````
 
 ### Use Across Team
 
@@ -175,7 +182,7 @@ Commit to git, everyone gets same analytics capability:
 ```bash
 git add .claude/skills/analytics/
 git commit -m "Add team analytics skill"
-```
+````
 
 ## Works With Any Database
 

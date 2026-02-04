@@ -13,6 +13,7 @@ You are a codebase style analyzer. Examine the project's code patterns and gener
 ## Deny Patterns
 
 The agent MUST NOT read, write, or access:
+
 - `.env*` files (environment secrets)
 - `**/.env` and `**/.env.*`
 - `**/secrets/**` directories
@@ -22,6 +23,7 @@ The agent MUST NOT read, write, or access:
 - `**/*token*`, `**/*apikey*` (API keys in filenames)
 
 ## Analysis:
+
 1. Scan for language patterns (naming, imports, error handling)
 2. Check existing linter configs
 3. Generate ruff configuration matching existing style

@@ -4,7 +4,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-orange)](https://code.claude.com/docs/plugins)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-green)](CHANGELOG.md)
+[![codecov](https://codecov.io/gh/jadecli/jade-dev-assist/branch/main/graph/badge.svg)](https://codecov.io/gh/jadecli/jade-dev-assist)
+[![Coverage](https://img.shields.io/badge/coverage-79.5%25-yellow.svg)](./coverage/index.html)
 
 ## Overview
 
@@ -65,20 +67,25 @@ jade-dashboard
 Following Anthropic's build-first philosophy:
 
 ### 1. Tasks Seed Automatically
+
 Swarm agents seed tasks into `.claude/tasks/tasks.json`
 
 ### 2. Create GitHub Issues
+
 ```bash
 node scripts/create-issues-from-tasks.js [repo-name]
 ```
 
 ### 3. Tag @claude When Ready
+
 Add comment to issue: `@claude please implement this`
 
 ### 4. Claude Creates PR
+
 Claude analyzes, implements, runs tests, creates PR
 
 ### 5. Review & Merge
+
 Quick review, merge, done
 
 See `docs/guides/anthropic-workflow.md` for details.
@@ -105,54 +112,54 @@ See `docs/guides/anthropic-workflow.md` for details.
 
 ### Capability Toggles
 
-| Capability | Description | Token Impact |
-|-----------|-------------|--------------|
-| Extended Thinking | Deep reasoning for complex problems | 1,024–31,999 tokens |
-| Web Search | Real-time information retrieval | 1-2 tool calls |
-| Research | Comprehensive multi-source analysis | 5+ tool calls, 1-3 min |
-| Artifacts | Persistent, shareable outputs | 20MB storage limit |
-| Skills | Dynamic capability loading | Varies by skill |
+| Capability        | Description                         | Token Impact           |
+| ----------------- | ----------------------------------- | ---------------------- |
+| Extended Thinking | Deep reasoning for complex problems | 1,024–31,999 tokens    |
+| Web Search        | Real-time information retrieval     | 1-2 tool calls         |
+| Research          | Comprehensive multi-source analysis | 5+ tool calls, 1-3 min |
+| Artifacts         | Persistent, shareable outputs       | 20MB storage limit     |
+| Skills            | Dynamic capability loading          | Varies by skill        |
 
 ## Commands
 
 ### Core Configuration
 
-| Command | Description |
-|---------|-------------|
-| `/jade:init` | Initialize JADE-DEV-ASSIST in a project |
-| `/jade:config` | Configure personalization settings |
-| `/jade:styles` | Manage and apply response styles |
-| `/jade:thinking` | Configure extended thinking |
+| Command          | Description                             |
+| ---------------- | --------------------------------------- |
+| `/jade:init`     | Initialize JADE-DEV-ASSIST in a project |
+| `/jade:config`   | Configure personalization settings      |
+| `/jade:styles`   | Manage and apply response styles        |
+| `/jade:thinking` | Configure extended thinking             |
 
 ### Boris Cherny's Top 10 Tips (Built-in)
 
-| # | Tip | Command |
-|---|-----|---------|
-| 1 | Do more in parallel | `/jade:worktree` |
-| 2 | Start in plan mode | `/jade:plan` |
-| 3 | Invest in CLAUDE.md | `/jade:learn` |
-| 4 | Create your own skills | `/jade:techdebt`, `/jade:context-sync` |
-| 5 | Claude fixes bugs | `/jade:fix` |
-| 6 | Level up prompting | `/jade:review grill\|prove\|refine` |
-| 7 | Terminal setup | Ghostty + `/statusline` |
-| 8 | Use subagents | `/jade:subagent` |
-| 9 | Data & analytics | `/jade:query` |
-| 10 | Learning mode | `/jade:explain` |
+| #   | Tip                    | Command                                |
+| --- | ---------------------- | -------------------------------------- |
+| 1   | Do more in parallel    | `/jade:worktree`                       |
+| 2   | Start in plan mode     | `/jade:plan`                           |
+| 3   | Invest in CLAUDE.md    | `/jade:learn`                          |
+| 4   | Create your own skills | `/jade:techdebt`, `/jade:context-sync` |
+| 5   | Claude fixes bugs      | `/jade:fix`                            |
+| 6   | Level up prompting     | `/jade:review grill\|prove\|refine`    |
+| 7   | Terminal setup         | Ghostty + `/statusline`                |
+| 8   | Use subagents          | `/jade:subagent`                       |
+| 9   | Data & analytics       | `/jade:query`                          |
+| 10  | Learning mode          | `/jade:explain`                        |
 
 ### Full Command Reference
 
-| Command | Description |
-|---------|-------------|
-| `/jade:worktree` | Manage 3-5 parallel git worktrees with Claude sessions |
-| `/jade:plan` | Plan mode for complex tasks (Shift+Tab to toggle) |
-| `/jade:learn` | Add rules to CLAUDE.md from mistakes |
-| `/jade:techdebt` | Find duplicated code - run at end of every session |
-| `/jade:fix` | Autonomous bug fixing from Slack, CI, logs |
-| `/jade:review` | Grill mode, prove it works, request elegance |
-| `/jade:subagent` | Throw more compute at problems |
-| `/jade:context-sync` | Sync 7 days of Slack/GDrive/Asana/GitHub |
-| `/jade:query` | Natural language to SQL - no more writing queries |
-| `/jade:explain` | Learning mode with slides, diagrams, quizzes |
+| Command              | Description                                            |
+| -------------------- | ------------------------------------------------------ |
+| `/jade:worktree`     | Manage 3-5 parallel git worktrees with Claude sessions |
+| `/jade:plan`         | Plan mode for complex tasks (Shift+Tab to toggle)      |
+| `/jade:learn`        | Add rules to CLAUDE.md from mistakes                   |
+| `/jade:techdebt`     | Find duplicated code - run at end of every session     |
+| `/jade:fix`          | Autonomous bug fixing from Slack, CI, logs             |
+| `/jade:review`       | Grill mode, prove it works, request elegance           |
+| `/jade:subagent`     | Throw more compute at problems                         |
+| `/jade:context-sync` | Sync 7 days of Slack/GDrive/Asana/GitHub               |
+| `/jade:query`        | Natural language to SQL - no more writing queries      |
+| `/jade:explain`      | Learning mode with slides, diagrams, quizzes           |
 
 ## Skills
 
@@ -212,18 +219,21 @@ See [docs/guides/creating-skills.md](docs/guides/creating-skills.md) for detaile
 JADE-DEV-ASSIST incorporates best practices from leading AI development methodologies:
 
 ### Superpowers Integration
+
 - Brainstorming before coding
 - Subagent-driven development
 - TDD enforcement (RED-GREEN-REFACTOR)
 - Two-stage code review
 
 ### GSD (Get Shit Done) Integration
+
 - Context engineering to prevent context rot
 - Structured XML task plans
 - Verification loops
 - Goal-backward analysis
 
 ### Ralph Integration
+
 - Autonomous development loops
 - Dual-condition exit gates
 - Rate limiting and circuit breakers
@@ -255,12 +265,46 @@ bin/jade-dashboard
 # Run all tests
 npm test
 
+# Run tests with coverage
+npm run test:coverage
+
+# Generate HTML coverage report
+npm run test:coverage:report
+
+# View coverage report
+# Open coverage/index.html in your browser
+
 # Run specific test suite
 node tests/test-plugin.js
 
 # Validate plugin structure
 node scripts/validate-plugin.js .
 ```
+
+### Code Formatting
+
+This project uses Prettier for consistent code formatting:
+
+```bash
+# Format all files
+npm run format
+
+# Check formatting without modifying files
+npm run format:check
+```
+
+Formatting is automatically checked in the pre-commit hook. If the check fails, run `npm run format` to fix formatting issues.
+
+### Test Coverage
+
+The project maintains test coverage with the following thresholds:
+
+- **Lines**: 79%+
+- **Functions**: 80%+
+- **Branches**: 73%+
+- **Statements**: 79%+
+
+Coverage reports are automatically generated in CI/CD and uploaded to Codecov. View the detailed HTML report locally by running `npm run test:coverage:report` and opening `coverage/index.html`.
 
 ## Documentation
 

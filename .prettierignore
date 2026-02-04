@@ -2,3 +2,4 @@ node_modules
 coverage
 .github
 docs
+tests/fixtures/malformed-tasks.json

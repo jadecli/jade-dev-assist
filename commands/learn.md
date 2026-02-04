@@ -1,7 +1,7 @@
 ---
 name: jade:learn
 description: Invest in your CLAUDE.md - after every correction, add rules so Claude doesn't repeat mistakes
-argument-hint: "[<lesson> | --notes | --analyze | --optimize]"
+argument-hint: '[<lesson> | --notes | --analyze | --optimize]'
 allowed-tools: [Read, Write, Bash]
 ---
 
@@ -17,13 +17,13 @@ allowed-tools: [Read, Write, Bash]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `<lesson>` | Add a lesson learned to CLAUDE.md |
-| `--notes` | Sync notes directory after PR |
-| `--analyze` | Show CLAUDE.md token usage and stats |
-| `--optimize` | Suggest optimizations for CLAUDE.md |
-| `--history` | Show what Claude has learned over time |
+| Command      | Description                            |
+| ------------ | -------------------------------------- |
+| `<lesson>`   | Add a lesson learned to CLAUDE.md      |
+| `--notes`    | Sync notes directory after PR          |
+| `--analyze`  | Show CLAUDE.md token usage and stats   |
+| `--optimize` | Suggest optimizations for CLAUDE.md    |
+| `--history`  | Show what Claude has learned over time |
 
 ## The Golden Rule
 
@@ -44,10 +44,12 @@ Claude will write the rule itself — it's eerily good at this.
 ```
 
 Appends to CLAUDE.md:
+
 ```markdown
 ## Lessons Learned
 
 ### Code Style
+
 - Always use async/await instead of .then() chains
 ```
 
@@ -60,6 +62,7 @@ You forgot to add error handling. Update your CLAUDE.md so you don't make that m
 ```
 
 Claude responds:
+
 ```
 I'll add this to CLAUDE.md:
 
@@ -76,6 +79,7 @@ I'll add this to CLAUDE.md:
 ```
 
 Output:
+
 ```
 📊 CLAUDE.md Analysis
 
@@ -87,7 +91,7 @@ Memory files · /memory
    Total rules: 47
    Categories: 8
    Last updated: 2 hours ago
-   
+
 🏷️ Categories
    Code Style: 12 rules
    Error Handling: 8 rules
@@ -133,7 +137,9 @@ Updating CLAUDE.md reference:
 # In CLAUDE.md
 
 ## Project Notes
+
 For detailed context on specific tasks, see the `/notes` directory:
+
 - Each task/project has its own notes file
 - Updated after every PR
 - Contains lessons, decisions, and context
@@ -161,6 +167,7 @@ For detailed context on specific tasks, see the `/notes` directory:
 ### 1. Ruthlessly Edit Over Time
 
 Don't just add — also remove and refine:
+
 - Remove outdated rules
 - Consolidate similar rules
 - Make rules more specific
@@ -174,6 +181,7 @@ Keep iterating until Claude's mistake rate measurably drops.
 ```
 
 Shows:
+
 - When rules were added
 - Which mistakes triggered them
 - Whether mistakes recurred
@@ -181,12 +189,15 @@ Shows:
 ### 3. Categorize Rules
 
 Group related rules:
+
 ```markdown
 ## Code Style
+
 - Use async/await
 - Prefer named exports
 
-## Testing  
+## Testing
+
 - Write tests first
 - Mock external services
 ```
@@ -199,6 +210,7 @@ Group related rules:
 ## Memory File Strategy
 
 Boris Cherny's setup:
+
 ```
 Memory files · /memory
 ├─ ~/.claude/CLAUDE.md: 76 tokens   # Global, minimal
@@ -206,13 +218,17 @@ Memory files · /memory
 ```
 
 ### Global (~/.claude/CLAUDE.md)
+
 Keep lightweight (< 100 tokens):
+
 - Universal preferences
 - Language choices
 - Communication style
 
 ### Project (CLAUDE.md)
+
 Be detailed (1-5k tokens):
+
 - Project-specific rules
 - Tech stack context
 - Past mistakes
@@ -224,21 +240,26 @@ Be detailed (1-5k tokens):
 # Project: [Name]
 
 ## Context
+
 [Brief project description]
 
 ## Tech Stack
+
 - [Language/Framework]
 - [Database]
 - [Key tools]
 
 ## Code Style Rules
+
 - [Rule 1]
 - [Rule 2]
 
 ## Lessons Learned
+
 <!-- Added automatically by /jade:learn -->
 
 ## Notes
+
 See /notes directory for detailed task context.
 ```
 
@@ -253,7 +274,7 @@ See /notes directory for detailed task context.
     "maxTokens": 5000,
     "categories": [
       "Code Style",
-      "Error Handling", 
+      "Error Handling",
       "Testing",
       "Architecture",
       "Git",

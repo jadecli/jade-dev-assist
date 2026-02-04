@@ -1,7 +1,7 @@
 ---
 name: jade:context-sync
 description: Sync 7 days of Slack, GDrive, Asana, and GitHub into one context dump
-argument-hint: "[--days <n> | --sources <list>]"
+argument-hint: '[--days <n> | --sources <list>]'
 allowed-tools: [Read, Write, Bash, MCP]
 ---
 
@@ -17,24 +17,24 @@ allowed-tools: [Read, Write, Bash, MCP]
 
 ## Options
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `--days <n>` | Number of days to sync | 7 |
-| `--sources <list>` | Comma-separated sources | all |
-| `--output <file>` | Save to file | stdout |
-| `--focus <topic>` | Filter by topic | none |
+| Flag               | Description             | Default |
+| ------------------ | ----------------------- | ------- |
+| `--days <n>`       | Number of days to sync  | 7       |
+| `--sources <list>` | Comma-separated sources | all     |
+| `--output <file>`  | Save to file            | stdout  |
+| `--focus <topic>`  | Filter by topic         | none    |
 
 ## Supported Sources
 
-| Source | MCP Required | Data Synced |
-|--------|--------------|-------------|
-| Slack | Yes | Messages, threads, mentions |
-| Google Drive | Yes | Docs, comments, changes |
-| Asana | Yes | Tasks, comments, updates |
-| GitHub | Yes | Issues, PRs, comments |
-| Linear | Yes | Issues, updates |
-| Notion | Yes | Pages, databases |
-| Jira | Yes | Tickets, comments |
+| Source       | MCP Required | Data Synced                 |
+| ------------ | ------------ | --------------------------- |
+| Slack        | Yes          | Messages, threads, mentions |
+| Google Drive | Yes          | Docs, comments, changes     |
+| Asana        | Yes          | Tasks, comments, updates    |
+| GitHub       | Yes          | Issues, PRs, comments       |
+| Linear       | Yes          | Issues, updates             |
+| Notion       | Yes          | Pages, databases            |
+| Jira         | Yes          | Tickets, comments           |
 
 ## Examples
 
@@ -53,7 +53,7 @@ allowed-tools: [Read, Write, Bash, MCP]
   • Discussion about auth refactor
   • Bug report: login timeout
   • Decision: use OAuth2 instead of SAML
-  
+
 #alerts (5 messages)
   • 2 deployment notifications
   • 3 error alerts (resolved)
@@ -86,7 +86,7 @@ Team updates:
 PRs:
   • #234 - Auth refactor (awaiting review)
   • #230 - Bug fix merged
-  
+
 Issues:
   • #456 - Login timeout (assigned to you)
   • #455 - Token refresh (closed)
@@ -185,36 +185,47 @@ Find all error-related discussions.
 # Context Sync: 2026-02-01
 
 ## Executive Summary
+
 [Auto-generated summary of key points]
 
 ## Slack
+
 ### #engineering
+
 - [2026-01-28] @alice: Started auth refactor
 - [2026-01-29] @bob: Found edge case in token refresh
 - [2026-01-30] Decision: Use OAuth2
 
 ### @mentions
+
 - [2026-01-29] @alice: Can you review PR #234?
 
 ## GitHub
+
 ### PRs
+
 - #234 - Auth refactor [Open, awaiting review]
 - #230 - Bug fix [Merged]
 
-### Issues  
+### Issues
+
 - #456 - Login timeout [Assigned to you]
 
 ## Asana
+
 ### Your Tasks
+
 - [In Progress] Implement OAuth2 flow
 - [Review] Update API documentation
 
 ## Key Themes
+
 1. Auth refactor is priority
 2. Security review needed
 3. Documentation update required
 
 ## Action Items
+
 - [ ] Complete PR #234
 - [ ] Review PR #238
 - [ ] Get security sign-off
@@ -225,6 +236,7 @@ Find all error-related discussions.
 ### 1. Daily Sync Habit
 
 Start each day:
+
 ```bash
 /jade:context-sync --days 1
 ```
@@ -232,6 +244,7 @@ Start each day:
 ### 2. Topic-Based Before Deep Work
 
 Before tackling a feature:
+
 ```bash
 /jade:context-sync --focus "feature-name"
 ```
@@ -239,6 +252,7 @@ Before tackling a feature:
 ### 3. Keep Context Fresh
 
 Don't let context go stale:
+
 - Sync at start of session
 - Re-sync after breaks
 - Sync before planning
