@@ -1,5 +1,43 @@
 #!/usr/bin/env bash
-# Launch the jade-dev-assist task dashboard.
-# Uses uv to install rich on-the-fly (cached after first run).
-SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
-exec uv run --with rich python3 "$SCRIPT_DIR/dashboard.py" "$@"
+# jade-dashboard launcher script
+#
+# Launches the jade-dev-assist task dashboard with proper dependency handling.
+# Falls back gracefully if uv is not available.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DASHBOARD_PY="${SCRIPT_DIR}/dashboard.py"
+
+# Check if the dashboard script exists
+if [[ ! -f "${DASHBOARD_PY}" ]]; then
+    echo "Error: dashboard.py not found at ${DASHBOARD_PY}" >&2
+    exit 1
+fi
+
+# Check for uv (preferred)
+if command -v uv &> /dev/null; then
+    exec uv run --with rich python "${DASHBOARD_PY}" "$@"
+fi
+
+# Fall back to python3
+if command -v python3 &> /dev/null; then
+    echo "Warning: uv not found, falling back to python3. Install uv for better dependency management." >&2
+    echo "         See: https://github.com/astral-sh/uv" >&2
+    echo "" >&2
+
+    # Check if rich is installed
+    if ! python3 -c "import rich" 2>/dev/null; then
+        echo "Error: python package 'rich' is not installed." >&2
+        echo "       Install it with: pip3 install rich" >&2
+        echo "       Or install uv and try again: curl -LsSf https://astral.sh/uv/install.sh | sh" >&2
+        exit 1
+    fi
+
+    exec python3 "${DASHBOARD_PY}" "$@"
+fi
+
+# No Python found
+echo "Error: Neither python3 nor uv found in PATH" >&2
+echo "       Please install Python 3 or uv to use jade-dashboard" >&2
+exit 1
