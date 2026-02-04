@@ -18,16 +18,15 @@
 Before testing can proceed, complete these manual steps:
 
 ### 1. Push Feature Branch
-```bash
-git push origin feature/anthropic-workflow
-```
+✅ DONE - PR #4 created
 
-### 2. Configure GitHub Secret
-In GitHub repo settings:
-- Navigate to: Settings → Secrets and variables → Actions
-- Click "New repository secret"
-- Name: `ANTHROPIC_API_KEY`
-- Value: Your Anthropic API key from console.anthropic.com
+### 2. Install Claude Code GitHub App
+No API keys needed! Just install the app:
+- Visit: https://github.com/apps/claude-code
+- Click "Install"
+- Select jadecli/jade-dev-assist repository
+
+The workflow uses your Claude Code subscription via GitHub App authentication.
 
 ### 3. Test Issue Creation (Dry Run)
 ```bash

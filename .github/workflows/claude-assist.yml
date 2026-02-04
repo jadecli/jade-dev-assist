@@ -23,8 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run Claude Code
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: "--max-turns 10 --model claude-sonnet-4-5-20250929"
+      - name: Claude Code via GitHub App
+        uses: anthropics/claude-code-github-app@v1
+        # Uses GitHub App authentication - no API key needed
+        # Install the Claude Code GitHub App at:
+        # https://github.com/apps/claude-code

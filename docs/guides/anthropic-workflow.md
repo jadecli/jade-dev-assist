@@ -79,12 +79,18 @@ Configuration: `.github/workflows/claude-assist.yml`
 ## Troubleshooting
 
 **Workflow not triggering?**
-- Check ANTHROPIC_API_KEY secret is set
+- Install Claude Code GitHub App: https://github.com/apps/claude-code
 - Verify issue has @claude mention or label
+- Check repository is selected in GitHub App settings
 
 **Claude not responding?**
 - Check Actions log: `gh run view --log`
 - Verify CLAUDE.md exists in repo
+- Ensure GitHub App has repository access
+
+**No API keys needed!**
+- Uses Claude Code subscription via GitHub App
+- Or use free Docker/Ollama local models
 
 **Want to test without creating issues?**
 ```bash
