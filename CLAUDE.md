@@ -59,6 +59,18 @@ Source: `.claude/tasks/tasks.json` | Milestone: Orchestrator MVP (2026-03-15) --
 
 Next milestone: status-updater.js and milestone-tracker.js (post-MVP).
 
+## GitHub Workflow
+
+We follow Anthropic's build-first philosophy:
+
+1. Tasks seed into tasks.json via swarm agents
+2. Create GitHub issues: `node scripts/create-issues-from-tasks.js`
+3. Tag @claude when ready to implement
+4. Claude creates PR automatically
+5. Review and merge
+
+See docs/guides/anthropic-workflow.md for complete guide.
+
 ## Anti-Collision
 
 Only one Claude Code session should work in this project at a time. The orchestrator design doc is the single source of truth for architecture decisions.
