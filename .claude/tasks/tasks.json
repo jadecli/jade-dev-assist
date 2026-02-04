@@ -455,21 +455,48 @@
       "notes": "Implemented simplified Anthropic-style workflow instead of complex bidirectional sync. PR #4 created."
     },
     {
+      "id": "jade-dev-assist/coderabbit-review-pr4",
+      "title": "Address CodeRabbit review on PR #4",
+      "description": "CodeRabbit reviewed PR #4 and requested 1 change: fix stale header comment in test file. Fix has been pushed, waiting for CodeRabbit to re-review and approve.",
+      "status": "in_progress",
+      "complexity": "XS",
+      "blocked_by": [],
+      "unlocks": ["jade-dev-assist/merge-anthropic-workflow-pr"],
+      "milestone": "Phase 3 Release",
+      "labels": ["pr-review", "coderabbit"],
+      "feature": {
+        "description": "CodeRabbit automated code review",
+        "benefit": "AI-powered code quality checks before merge",
+        "acceptance_criteria": [
+          "✅ CodeRabbit reviewed PR #4 (2026-02-04 22:19:29)",
+          "✅ Fixed: Update test file header comment",
+          "⏳ Waiting for CodeRabbit re-review",
+          "⏳ CodeRabbit approval required"
+        ]
+      },
+      "relevant_files": [
+        "tests/test-create-issues-from-tasks.js",
+        "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/4"
+      ],
+      "created_at": "2026-02-04T22:19:29Z",
+      "updated_at": "2026-02-04T22:30:00Z"
+    },
+    {
       "id": "jade-dev-assist/merge-anthropic-workflow-pr",
       "title": "Merge Anthropic workflow PR",
-      "description": "Review and merge PR #4 (https://github.com/jadecli/jade-dev-assist/pull/4) that implements the simplified GitHub workflow. PR includes: simple issue creator, GitHub Actions workflow, comprehensive documentation, and .gitignore.",
+      "description": "Merge PR #4 once CodeRabbit approves. PR includes: simple issue creator, GitHub Actions workflow, comprehensive documentation, and .gitignore.",
       "status": "pending",
-      "complexity": "S",
-      "blocked_by": [],
+      "complexity": "XS",
+      "blocked_by": ["jade-dev-assist/coderabbit-review-pr4"],
       "unlocks": ["jade-dev-assist/install-github-app"],
       "milestone": "Phase 3 Release",
-      "labels": ["pr-review", "workflow"],
+      "labels": ["pr-merge", "workflow"],
       "feature": {
         "description": "Merge Anthropic-style workflow implementation",
         "benefit": "Enable simple GitHub workflow across jadecli ecosystem",
         "acceptance_criteria": [
-          "Review PR #4 changes",
-          "Verify all tests pass (13/13)",
+          "CodeRabbit approves PR #4",
+          "All tests pass (13/13)",
           "Merge to main branch",
           "Delete feature/anthropic-workflow branch after merge"
         ]
