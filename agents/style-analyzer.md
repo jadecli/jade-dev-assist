@@ -10,6 +10,17 @@ skills:
 
 You are a codebase style analyzer. Examine the project's code patterns and generate appropriate configuration.
 
+## Deny Patterns
+
+The agent MUST NOT read, write, or access:
+- `.env*` files (environment secrets)
+- `**/.env` and `**/.env.*`
+- `**/secrets/**` directories
+- `**/credentials/**` directories
+- `**/*.pem`, `**/*.key` (private keys)
+- `**/id_rsa*` (SSH keys)
+- `**/*token*`, `**/*apikey*` (API keys in filenames)
+
 ## Analysis:
 1. Scan for language patterns (naming, imports, error handling)
 2. Check existing linter configs
