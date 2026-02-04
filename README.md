@@ -57,6 +57,29 @@ claude plugin install ./jade-dev-assist --scope user
 /jade:thinking --enable --budget 16000
 ```
 
+## Anthropic-Style Workflow
+
+Following Anthropic's build-first philosophy:
+
+### 1. Tasks Seed Automatically
+Swarm agents seed tasks into `.claude/tasks/tasks.json`
+
+### 2. Create GitHub Issues
+```bash
+node scripts/create-issues-from-tasks.js [repo-name]
+```
+
+### 3. Tag @claude When Ready
+Add comment to issue: `@claude please implement this`
+
+### 4. Claude Creates PR
+Claude analyzes, implements, runs tests, creates PR
+
+### 5. Review & Merge
+Quick review, merge, done
+
+See `docs/guides/anthropic-workflow.md` for details.
+
 ## Architecture
 
 ### Three-Tier Personalization
