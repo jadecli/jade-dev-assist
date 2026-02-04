@@ -1,7 +1,7 @@
 ---
 name: jade:fix
 description: Claude fixes most bugs by itself - zero context switching required
-argument-hint: "[ci | <slack-url> | logs | <description>]"
+argument-hint: '[ci | <slack-url> | logs | <description>]'
 allowed-tools: [Read, Write, Bash, Glob, Grep, MCP]
 ---
 
@@ -17,12 +17,12 @@ allowed-tools: [Read, Write, Bash, Glob, Grep, MCP]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `ci` | Go fix the failing CI tests |
-| `<slack-url>` | Fix bug from Slack thread |
-| `logs` | Analyze and fix from logs |
-| `<description>` | Fix described issue |
+| Command         | Description                 |
+| --------------- | --------------------------- |
+| `ci`            | Go fix the failing CI tests |
+| `<slack-url>`   | Fix bug from Slack thread   |
+| `logs`          | Analyze and fix from logs   |
+| `<description>` | Fix described issue         |
 
 ## Philosophy
 
@@ -39,6 +39,7 @@ Just tell Claude what's broken. Let it figure out the fix.
 ```
 
 Claude will:
+
 1. Check CI status
 2. Identify failing tests
 3. Read error messages
@@ -74,6 +75,7 @@ Done. Don't micromanage how.
 ```
 
 With Slack MCP enabled:
+
 ```
 🔧 Slack Bug Fix
 
@@ -82,7 +84,7 @@ With Slack MCP enabled:
 
 • Bug summary:
   └─ Users can't login after password reset
-  
+
 • Finding related code...
   └─ src/auth/password-reset.ts
 
@@ -130,6 +132,7 @@ With Slack MCP enabled:
 ```
 
 Claude handles:
+
 1. Finding relevant code
 2. Identifying the issue
 3. Implementing the fix
@@ -140,6 +143,7 @@ Claude handles:
 ### Slack MCP
 
 Enable for direct Slack access:
+
 ```json
 {
   "mcp": {
@@ -153,6 +157,7 @@ Enable for direct Slack access:
 ```
 
 Then:
+
 ```
 > fix this https://ant.slack.com/archives/...
 
@@ -162,6 +167,7 @@ Then:
 ### GitHub MCP
 
 For issue-based fixes:
+
 ```bash
 /jade:fix https://github.com/org/repo/issues/123
 ```
@@ -169,6 +175,7 @@ For issue-based fixes:
 ### Linear MCP
 
 For ticket-based fixes:
+
 ```bash
 /jade:fix LIN-123
 ```
@@ -178,13 +185,15 @@ For ticket-based fixes:
 ### 1. Don't Micromanage
 
 ❌ Bad:
+
 ```
-Fix the bug by opening the file at src/auth/login.ts, 
-finding the function called handleLogin, and changing 
+Fix the bug by opening the file at src/auth/login.ts,
+finding the function called handleLogin, and changing
 the validation logic on line 45...
 ```
 
 ✅ Good:
+
 ```
 Fix the login bug
 ```
@@ -192,6 +201,7 @@ Fix the login bug
 ### 2. Provide Context When Helpful
 
 Sometimes a bit of context helps:
+
 ```
 Fix the login bug. It started after yesterday's deploy.
 ```
@@ -199,6 +209,7 @@ Fix the login bug. It started after yesterday's deploy.
 ### 3. Let Claude Explore
 
 Claude is good at:
+
 - Reading logs
 - Tracing errors
 - Finding root causes
@@ -207,20 +218,21 @@ Claude is good at:
 ### 4. Trust the Process
 
 If Claude's first fix doesn't work, just say:
+
 ```
 That didn't work. Try again.
 ```
 
 ## Supported Fix Sources
 
-| Source | Command | Requires |
-|--------|---------|----------|
-| CI/CD | `/jade:fix ci` | CI access |
-| Slack | `/jade:fix <slack-url>` | Slack MCP |
-| GitHub Issues | `/jade:fix <gh-url>` | GitHub access |
-| Linear | `/jade:fix LIN-123` | Linear MCP |
-| Logs | `/jade:fix logs` | Log access |
-| Description | `/jade:fix "..."` | Nothing |
+| Source        | Command                 | Requires      |
+| ------------- | ----------------------- | ------------- |
+| CI/CD         | `/jade:fix ci`          | CI access     |
+| Slack         | `/jade:fix <slack-url>` | Slack MCP     |
+| GitHub Issues | `/jade:fix <gh-url>`    | GitHub access |
+| Linear        | `/jade:fix LIN-123`     | Linear MCP    |
+| Logs          | `/jade:fix logs`        | Log access    |
+| Description   | `/jade:fix "..."`       | Nothing       |
 
 ## Configuration
 
@@ -228,11 +240,7 @@ That didn't work. Try again.
 {
   "fix": {
     "ciProvider": "github-actions",
-    "logSources": [
-      "docker",
-      "kubernetes",
-      "cloudwatch"
-    ],
+    "logSources": ["docker", "kubernetes", "cloudwatch"],
     "autoVerify": true,
     "createPR": false,
     "mcpIntegrations": {

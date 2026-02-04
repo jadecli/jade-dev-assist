@@ -27,6 +27,7 @@ For a new repo:
    - .github/workflows/ci.yml with quality gate
 
 ## Templates
+
 - python-uv (default for Python)
 - typescript-node
 - generic (minimal, language-agnostic)

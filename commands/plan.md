@@ -1,7 +1,7 @@
 ---
 name: jade:plan
 description: Start every complex task in plan mode - pour energy into the plan so Claude can 1-shot the implementation
-argument-hint: "[start | review | verify | replan]"
+argument-hint: '[start | review | verify | replan]'
 allowed-tools: [Read, Write, Bash, Glob, Grep]
 ---
 
@@ -17,12 +17,12 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `start` | Enter plan mode for a new task |
+| Command  | Description                                          |
+| -------- | ---------------------------------------------------- |
+| `start`  | Enter plan mode for a new task                       |
 | `review` | Spawn second Claude to review plan as staff engineer |
-| `verify` | Enter plan mode for verification steps |
-| `replan` | Something went sideways? Re-plan instead of pushing |
+| `verify` | Enter plan mode for verification steps               |
+| `replan` | Something went sideways? Re-plan instead of pushing  |
 
 ## Keyboard Shortcut
 
@@ -37,6 +37,7 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 ```
 
 Output:
+
 ```
 🎯 Plan Mode Activated
 
@@ -131,6 +132,7 @@ New plan:
 ### 2. Two-Claude Review
 
 One person's workflow:
+
 1. Claude #1 writes the plan
 2. Spin up Claude #2 to review it as staff engineer
 3. Only proceed when plan passes review
@@ -138,6 +140,7 @@ One person's workflow:
 ### 3. Re-Plan Early
 
 The moment something goes sideways:
+
 - **Don't** keep pushing and hope it works
 - **Do** switch back to plan mode immediately
 - Re-plan with new information
@@ -145,6 +148,7 @@ The moment something goes sideways:
 ### 4. Plan Verification Too
 
 Use plan mode for:
+
 - ✅ Building features
 - ✅ Verification steps
 - ✅ Testing strategy
@@ -156,35 +160,43 @@ When entering plan mode, use this structure:
 
 ```markdown
 ## Task
+
 [What are we trying to accomplish?]
 
 ## Requirements
+
 - [Requirement 1]
 - [Requirement 2]
 
 ## Constraints
+
 - [Technical constraints]
 - [Time constraints]
 - [Dependencies]
 
 ## Approach
+
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
 
 ## Files to Modify
+
 - `path/to/file1.ts` - [changes]
 - `path/to/file2.ts` - [changes]
 
 ## Edge Cases
+
 - [Edge case 1]
 - [Edge case 2]
 
 ## Success Criteria
+
 - [ ] [Criterion 1]
 - [ ] [Criterion 2]
 
 ## Verification Plan
+
 - [ ] [Test 1]
 - [ ] [Test 2]
 ```
@@ -197,7 +209,7 @@ When entering plan mode, use this structure:
 # Plan in main worktree
 /jade:plan start "Feature X"
 
-# Review in separate worktree  
+# Review in separate worktree
 /jade:worktree create review
 /jade:plan review
 ```
@@ -234,9 +246,9 @@ use 3 subagents to implement the plan
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Plan too vague | Add more specific steps |
+| Issue                | Solution                        |
+| -------------------- | ------------------------------- |
+| Plan too vague       | Add more specific steps         |
 | Implementation fails | `/jade:plan replan` immediately |
-| Missing edge cases | Use `/jade:plan review` |
-| Verification skipped | Enable `verificationRequired` |
+| Missing edge cases   | Use `/jade:plan review`         |
+| Verification skipped | Enable `verificationRequired`   |

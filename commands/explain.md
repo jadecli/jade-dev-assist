@@ -1,13 +1,13 @@
 ---
 name: jade:explain
 description: Learning with Claude - explanatory style, visual presentations, ASCII diagrams, spaced repetition
-argument-hint: "<topic> [--slides | --diagram | --quiz]"
+argument-hint: '<topic> [--slides | --diagram | --quiz]'
 allowed-tools: [Read, Write, Bash, Glob, Grep]
 ---
 
 # Learning with Claude
 
-> "Enable the 'Explanatory' or 'Learning' output style in /config to have Claude explain the *why* behind its changes." — Boris Cherny
+> "Enable the 'Explanatory' or 'Learning' output style in /config to have Claude explain the _why_ behind its changes." — Boris Cherny
 
 ## Usage
 
@@ -17,12 +17,12 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--slides` | Generate visual HTML presentation |
-| `--diagram` | Draw ASCII diagram |
-| `--quiz` | Spaced repetition quiz mode |
-| `--deep` | Extended explanation with examples |
+| Flag        | Description                        |
+| ----------- | ---------------------------------- |
+| `--slides`  | Generate visual HTML presentation  |
+| `--diagram` | Draw ASCII diagram                 |
+| `--quiz`    | Spaced repetition quiz mode        |
+| `--deep`    | Extended explanation with examples |
 
 ## Examples
 
@@ -32,7 +32,7 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 /jade:explain "how does the auth middleware work"
 ```
 
-```
+````
 📚 Learning Mode
 
 ## What is Auth Middleware?
@@ -58,16 +58,16 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 // src/middleware/auth.ts
 export const auth = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   if (!token) {
     return res.status(401).json({ error: 'Missing token' });
   }
-  
+
   const user = jwt.verify(token, SECRET);
   req.user = user;
   next();
 };
-```
+````
 
 ## Why This Pattern?
 
@@ -80,17 +80,19 @@ export const auth = async (req, res, next) => {
 ❌ Checking auth in every route
 ❌ Forgetting to call next()
 ❌ Exposing sensitive error details
-```
+
+````
 
 ### Generate Visual Presentation
 
 ```bash
 /jade:explain "OAuth2 flow" --slides
-```
+````
 
 > "Have Claude generate a visual HTML presentation explaining unfamiliar code. It makes surprisingly good slides!"
 
 Creates `oauth2-slides.html`:
+
 ```html
 <!-- Interactive HTML slides with:
      - Clear diagrams
@@ -119,7 +121,7 @@ HTTP Request Lifecycle:
    ┌─────────┐ ┌──────────┐ ┌─────────┐
    │ Logger  │ │   Auth   │ │  CORS   │
    └─────────┘ └──────────┘ └─────────┘
-   
+
 Middleware Chain:
   Request → Logger → CORS → Auth → Route → Response
 ```
@@ -163,6 +165,7 @@ Enable learning style:
 ```
 
 Or in config:
+
 ```json
 {
   "styles": {
@@ -176,6 +179,7 @@ Or in config:
 ### Always Explains Why
 
 Not just what to do, but why:
+
 ```
 // We use bcrypt (not SHA-256) because:
 // 1. Built-in salting prevents rainbow tables

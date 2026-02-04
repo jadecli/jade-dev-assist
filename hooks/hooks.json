@@ -7,10 +7,7 @@
       "actions": [
         {
           "type": "loadContext",
-          "files": [
-            "~/.claude/CLAUDE.md",
-            ".claude/CLAUDE.md"
-          ],
+          "files": ["~/.claude/CLAUDE.md", ".claude/CLAUDE.md"],
           "optional": true
         },
         {
@@ -50,10 +47,7 @@
       "actions": [
         {
           "type": "validate",
-          "rules": [
-            "typescript-strict",
-            "no-any-types"
-          ],
+          "rules": ["typescript-strict", "no-any-types"],
           "warnOnly": true
         }
       ]
