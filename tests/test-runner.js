@@ -16,13 +16,16 @@ const fs = require('fs');
 const path = require('path');
 
 const testsDir = __dirname;
-const testFiles = fs.readdirSync(testsDir)
-    .filter(f => f.startsWith('test-') && f.endsWith('.js') && f !== 'test-runner.js')
-    .sort();
+const testFiles = fs
+  .readdirSync(testsDir)
+  .filter(
+    (f) => f.startsWith('test-') && f.endsWith('.js') && f !== 'test-runner.js'
+  )
+  .sort();
 
 if (testFiles.length === 0) {
-    console.log('No test files found.');
-    process.exit(0);
+  console.log('No test files found.');
+  process.exit(0);
 }
 
 console.log(`\nDiscovered ${testFiles.length} test suite(s):\n`);
@@ -30,51 +33,53 @@ console.log(`\nDiscovered ${testFiles.length} test suite(s):\n`);
 const results = [];
 
 for (const file of testFiles) {
-    const filePath = path.join(testsDir, file);
-    const label = file.replace(/\.js$/, '');
+  const filePath = path.join(testsDir, file);
+  const label = file.replace(/\.js$/, '');
 
-    process.stdout.write(`  Running ${label} ... `);
+  process.stdout.write(`  Running ${label} ... `);
 
-    try {
-        const output = execSync(`node "${filePath}"`, {
-            encoding: 'utf8',
-            stdio: ['pipe', 'pipe', 'pipe'],
-            timeout: 30000
-        });
-        console.log('PASS');
-        results.push({ file, label, passed: true, output });
-    } catch (err) {
-        console.log('FAIL');
-        results.push({
-            file,
-            label,
-            passed: false,
-            output: (err.stdout || '') + (err.stderr || '')
-        });
-    }
+  try {
+    const output = execSync(`node "${filePath}"`, {
+      encoding: 'utf8',
+      stdio: ['pipe', 'pipe', 'pipe'],
+      timeout: 30000,
+    });
+    console.log('PASS');
+    results.push({ file, label, passed: true, output });
+  } catch (err) {
+    console.log('FAIL');
+    results.push({
+      file,
+      label,
+      passed: false,
+      output: (err.stdout || '') + (err.stderr || ''),
+    });
+  }
 }
 
 // Print summary
-const passedSuites = results.filter(r => r.passed);
-const failedSuites = results.filter(r => !r.passed);
+const passedSuites = results.filter((r) => r.passed);
+const failedSuites = results.filter((r) => !r.passed);
 
 console.log('\n' + '='.repeat(50));
-console.log(`\n  Suites: ${passedSuites.length} passed, ${failedSuites.length} failed, ${results.length} total\n`);
+console.log(
+  `\n  Suites: ${passedSuites.length} passed, ${failedSuites.length} failed, ${results.length} total\n`
+);
 
 if (failedSuites.length > 0) {
-    console.log('  Failed suites:\n');
-    for (const r of failedSuites) {
-        console.log(`    - ${r.label}`);
-        // Print last 20 lines of output for debugging
-        const lines = r.output.trim().split('\n');
-        const tail = lines.slice(-20);
-        for (const line of tail) {
-            console.log(`      ${line}`);
-        }
-        console.log('');
+  console.log('  Failed suites:\n');
+  for (const r of failedSuites) {
+    console.log(`    - ${r.label}`);
+    // Print last 20 lines of output for debugging
+    const lines = r.output.trim().split('\n');
+    const tail = lines.slice(-20);
+    for (const line of tail) {
+      console.log(`      ${line}`);
     }
-    process.exit(1);
+    console.log('');
+  }
+  process.exit(1);
 } else {
-    console.log('  All suites passed.\n');
-    process.exit(0);
+  console.log('  All suites passed.\n');
+  process.exit(0);
 }

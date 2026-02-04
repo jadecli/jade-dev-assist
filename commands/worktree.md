@@ -1,7 +1,7 @@
 ---
 name: jade:worktree
 description: Manage parallel git worktrees with Claude sessions - the single biggest productivity unlock
-argument-hint: "[create|list|switch|remove] [options]"
+argument-hint: '[create|list|switch|remove] [options]'
 allowed-tools: [Read, Write, Bash, Glob]
 ---
 
@@ -17,14 +17,14 @@ allowed-tools: [Read, Write, Bash, Glob]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `create` | Create a new worktree with Claude session |
-| `list` | Show all active worktrees |
-| `switch` | Quick switch between worktrees |
-| `remove` | Remove a worktree |
-| `setup-aliases` | Configure shell aliases (za, zb, zc...) |
-| `analysis` | Create dedicated analysis worktree |
+| Command         | Description                               |
+| --------------- | ----------------------------------------- |
+| `create`        | Create a new worktree with Claude session |
+| `list`          | Show all active worktrees                 |
+| `switch`        | Quick switch between worktrees            |
+| `remove`        | Remove a worktree                         |
+| `setup-aliases` | Configure shell aliases (za, zb, zc...)   |
+| `analysis`      | Create dedicated analysis worktree        |
 
 ## Examples
 
@@ -51,12 +51,13 @@ allowed-tools: [Read, Write, Bash, Glob]
 ```
 
 Output:
+
 ```
 📂 Active Worktrees (4)
 
   main        → /code/myproject (active)
   feature-a   → .claude/worktrees/feature-a
-  feature-b   → .claude/worktrees/feature-b  
+  feature-b   → .claude/worktrees/feature-b
   analysis    → .claude/worktrees/analysis (read-only)
 
 💡 Use 'za', 'zb', 'zc' aliases to switch quickly
@@ -80,6 +81,7 @@ zb  # switches to worktree b
 ```
 
 Adds to your `.zshrc` or `.bashrc`:
+
 ```bash
 # JADE Worktree Aliases
 alias za='cd .claude/worktrees/a && claude'
@@ -95,9 +97,10 @@ alias zlist='git worktree list'
 ### Pattern 1: Feature Parallelization
 
 Run 3-5 features simultaneously:
+
 ```
 Terminal 1: worktree/feature-auth   → Claude working on auth
-Terminal 2: worktree/feature-api    → Claude working on API  
+Terminal 2: worktree/feature-api    → Claude working on API
 Terminal 3: worktree/feature-ui     → Claude working on UI
 Terminal 4: main                    → You reviewing/merging
 ```
@@ -140,12 +143,14 @@ Special worktree for non-coding tasks:
 ```
 
 Features:
+
 - Read-only mode (prevents accidental changes)
 - Pre-loaded with analytics skills
 - Optimized for log analysis and BigQuery
 - Separate context window
 
 Use cases:
+
 - Reading production logs
 - Running BigQuery analytics
 - Investigating issues without touching code
@@ -189,9 +194,9 @@ git worktree remove .claude/worktrees/${name}
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| "Worktree already exists" | Remove with `/jade:worktree remove <n>` |
-| Can't switch worktrees | Check for uncommitted changes |
-| Merge conflicts | Resolve in worktree, then merge to main |
-| Context bleed | Each worktree has isolated Claude session |
+| Issue                     | Solution                                  |
+| ------------------------- | ----------------------------------------- |
+| "Worktree already exists" | Remove with `/jade:worktree remove <n>`   |
+| Can't switch worktrees    | Check for uncommitted changes             |
+| Merge conflicts           | Resolve in worktree, then merge to main   |
+| Context bleed             | Each worktree has isolated Claude session |

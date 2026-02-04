@@ -775,6 +775,233 @@
         "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/5"
       ],
       "created_at": "2026-02-04T22:22:57.229Z"
+    },
+    {
+      "id": "jade-dev-assist/add-features-json",
+      "title": "Add features.json tracking system",
+      "description": "Implement features.json like jadecli-codespaces for better feature status tracking. Include feature dependencies, test commands, and phase tracking.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Quality Improvements",
+      "labels": [
+        "feature",
+        "dx"
+      ],
+      "feature": {
+        "description": "Structured feature tracking with dependencies and tests",
+        "benefit": "Better project health visibility and clearer feature dependencies",
+        "acceptance_criteria": [
+          "Create features.json with all current features",
+          "Map features to files and test commands",
+          "Track feature status (scaffolded/implemented/tested)",
+          "Document feature dependencies",
+          "Add npm script to validate features.json"
+        ]
+      },
+      "relevant_files": [
+        "features.json (to create)",
+        "scripts/validate-features.js (to create)",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/features.json"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/centralized-settings",
+      "title": "Add centralized settings module",
+      "description": "Create lib/settings.js using Pydantic-style pattern for centralized configuration. Support .env loading, GitHub Secrets, and type-safe access.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [
+        "jade-dev-assist/settings-migration"
+      ],
+      "milestone": "Quality Improvements",
+      "labels": [
+        "refactor",
+        "infrastructure"
+      ],
+      "feature": {
+        "description": "Type-safe centralized configuration management",
+        "benefit": "Single source of truth for all configuration, better secret management",
+        "acceptance_criteria": [
+          "Create lib/settings.js with joi or zod validation",
+          "Support .env file loading",
+          "Support GitHub Secrets",
+          "Document all configuration options",
+          "Add tests for settings validation"
+        ]
+      },
+      "relevant_files": [
+        "lib/settings.js (to create)",
+        "tests/test-settings.js (to create)",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/cli/settings.py"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/settings-migration",
+      "title": "Migrate to centralized settings",
+      "description": "Refactor all modules to use centralized settings instead of scattered configuration. Update dispatcher, executor, scanner, etc.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [
+        "jade-dev-assist/centralized-settings"
+      ],
+      "unlocks": [],
+      "milestone": "Quality Improvements",
+      "labels": [
+        "refactor"
+      ],
+      "feature": {
+        "description": "Migration to centralized settings pattern",
+        "benefit": "Consistent configuration access across all modules",
+        "acceptance_criteria": [
+          "Update all lib modules to use settings",
+          "Remove hardcoded paths and config",
+          "Update tests to use mock settings",
+          "All tests pass after migration"
+        ]
+      },
+      "relevant_files": [
+        "lib/dispatcher.js",
+        "lib/executor.js",
+        "lib/scanner.js",
+        "lib/status-updater.js"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/entity-frontmatter",
+      "title": "Add entity frontmatter to all lib files",
+      "description": "Add comprehensive frontmatter to all lib/*.js files following jadecli-codespaces pattern. Include entity_id, dependencies, exports, breaking change risk.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Quality Improvements",
+      "labels": [
+        "documentation",
+        "dx"
+      ],
+      "feature": {
+        "description": "Entity tracking frontmatter on all code files",
+        "benefit": "Better code archaeology, change impact analysis, token reduction",
+        "acceptance_criteria": [
+          "Add frontmatter to all lib/*.js files",
+          "Document entity_id, entity_exports, entity_dependencies",
+          "Track breaking_change_risk",
+          "Add validation script for frontmatter",
+          "Document frontmatter schema"
+        ]
+      },
+      "relevant_files": [
+        "lib/scanner.js",
+        "lib/scorer.js",
+        "lib/dispatcher.js",
+        "lib/executor.js",
+        "lib/task-utils.js",
+        "scripts/validate-frontmatter.js (to create)",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/parallel_api/clients/async_client.py"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/developer-guides",
+      "title": "Create developer guides documentation",
+      "description": "Create docs/guides/ with numbered developer guides covering orchestrator usage, contributing, architecture, testing, and deployment.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Quality Improvements",
+      "labels": [
+        "documentation"
+      ],
+      "feature": {
+        "description": "Comprehensive developer documentation",
+        "benefit": "Better onboarding, clearer patterns, self-service support",
+        "acceptance_criteria": [
+          "Create docs/guides/ directory",
+          "Write 01-quickstart.md",
+          "Write 02-architecture.md",
+          "Write 03-contributing.md",
+          "Write 04-testing.md",
+          "Write 05-deployment.md",
+          "Link guides from README.md"
+        ]
+      },
+      "relevant_files": [
+        "docs/guides/ (to create)",
+        "README.md",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/docs/guides/"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/github-project-fields",
+      "title": "Add custom fields to GitHub Projects",
+      "description": "Enhance GitHub Issues integration with custom fields: Priority (High/Medium/Low), Complexity (S/M/L/XL), Estimate (number), Target Date.",
+      "status": "pending",
+      "complexity": "S",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Phase 3 Release",
+      "labels": [
+        "feature",
+        "github"
+      ],
+      "feature": {
+        "description": "Rich metadata fields in GitHub Projects",
+        "benefit": "Better project tracking, filtering, and visualization",
+        "acceptance_criteria": [
+          "Add Priority single-select field",
+          "Add Complexity single-select field",
+          "Add Estimate number field",
+          "Add Target Date field",
+          "Update issue creator to set fields",
+          "Document field usage in workflow guide"
+        ]
+      },
+      "relevant_files": [
+        "scripts/create-issues-from-tasks.js",
+        "scripts/setup-project-fields.js (to create)",
+        "docs/guides/anthropic-workflow.md",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/docs/guides/12-understanding-fields.md"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
+    },
+    {
+      "id": "jade-dev-assist/sub-issues-support",
+      "title": "Add sub-issues support to workflow",
+      "description": "Enable breaking down large tasks into sub-issues in GitHub. Update issue creator to support parent/child relationships.",
+      "status": "pending",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Phase 3 Release",
+      "labels": [
+        "feature",
+        "github"
+      ],
+      "feature": {
+        "description": "Hierarchical issue structure with parent/child relationships",
+        "benefit": "Better task breakdown, parallel work, progress tracking",
+        "acceptance_criteria": [
+          "Add subtasks field to tasks.json schema",
+          "Update issue creator to create sub-issues",
+          "Link sub-issues to parent issue",
+          "Update status tracking for parent/child",
+          "Document sub-issues pattern"
+        ]
+      },
+      "relevant_files": [
+        "scripts/create-issues-from-tasks.js",
+        ".claude/tasks/tasks.json",
+        "Reference: /home/alex-jadecli/projects/jadecli-codespaces/docs/guides/03-sub-issues.md"
+      ],
+      "created_at": "2026-02-04T22:27:44.362Z"
     }
   ]
 }

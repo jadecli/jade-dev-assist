@@ -25,7 +25,10 @@
   "skills": [
     { "name": "capability-toggler", "path": "skills/capability-toggler" },
     { "name": "ide-scaffold", "path": "skills/ide-scaffold" },
-    { "name": "personalization-manager", "path": "skills/personalization-manager" },
+    {
+      "name": "personalization-manager",
+      "path": "skills/personalization-manager"
+    },
     { "name": "roadmap-updater", "path": "skills/roadmap-updater" },
     { "name": "style-configurator", "path": "skills/style-configurator" },
     { "name": "workflow-orchestrator", "path": "skills/workflow-orchestrator" }

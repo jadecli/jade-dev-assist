@@ -12,14 +12,14 @@ Manages Claude's capability toggles with sensible defaults and project-specific 
 
 ## Capabilities Matrix
 
-| Capability | Description | Token Impact | Plans |
-|-----------|-------------|--------------|-------|
-| Extended Thinking | Deep reasoning mode | 1,024–31,999 | All |
-| Web Search | Real-time information | 1-2 tool calls | All |
-| Research | Comprehensive analysis | 5+ calls, 1-3 min | Paid |
-| Artifacts | Persistent outputs | 20MB storage | All |
-| Skills | Dynamic capability loading | Varies | Paid + CC |
-| MCP Integration | External service connections | N/A | Paid |
+| Capability        | Description                  | Token Impact      | Plans     |
+| ----------------- | ---------------------------- | ----------------- | --------- |
+| Extended Thinking | Deep reasoning mode          | 1,024–31,999      | All       |
+| Web Search        | Real-time information        | 1-2 tool calls    | All       |
+| Research          | Comprehensive analysis       | 5+ calls, 1-3 min | Paid      |
+| Artifacts         | Persistent outputs           | 20MB storage      | All       |
+| Skills            | Dynamic capability loading   | Varies            | Paid + CC |
+| MCP Integration   | External service connections | N/A               | Paid      |
 
 ## Usage
 
@@ -30,6 +30,7 @@ Manages Claude's capability toggles with sensible defaults and project-specific 
 ```
 
 Output:
+
 ```
 🧠 Extended Thinking: ENABLED (budget: 16000 tokens)
 🔍 Web Search: ENABLED (no domain restrictions)
@@ -276,10 +277,10 @@ export CLAUDE_CONTAINER_ID=<container-id>
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Thinking not activating | Verify model supports it (Claude 4+) |
-| Search blocked | Check domain filters |
-| Artifacts failing | Verify plan supports persistent storage |
-| Skills not loading | Check beta headers in API calls |
-| MCP not connecting | Verify server authentication |
+| Issue                   | Solution                                |
+| ----------------------- | --------------------------------------- |
+| Thinking not activating | Verify model supports it (Claude 4+)    |
+| Search blocked          | Check domain filters                    |
+| Artifacts failing       | Verify plan supports persistent storage |
+| Skills not loading      | Check beta headers in API calls         |
+| MCP not connecting      | Verify server authentication            |

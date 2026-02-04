@@ -13,20 +13,20 @@ jade-dev-assist is a JavaScript Claude Code plugin that serves as the central or
 
 ## Key Directory Structure
 
-| Directory | Purpose |
-|-----------|---------|
-| `commands/` | CLI command handlers |
-| `skills/` | Reusable skill definitions |
-| `agents/` | Agent configurations and behaviors |
-| `lib/` | Core utility modules |
+| Directory   | Purpose                            |
+| ----------- | ---------------------------------- |
+| `commands/` | CLI command handlers               |
+| `skills/`   | Reusable skill definitions         |
+| `agents/`   | Agent configurations and behaviors |
+| `lib/`      | Core utility modules               |
 
 ## Core Modules in lib/
 
-| Module | Purpose |
-|--------|---------|
-| `scanner` | Scans codebase for relevant context |
-| `scorer` | Ranks and scores search results |
-| `presenter` | Formats output for display |
+| Module       | Purpose                                 |
+| ------------ | --------------------------------------- |
+| `scanner`    | Scans codebase for relevant context     |
+| `scorer`     | Ranks and scores search results         |
+| `presenter`  | Formats output for display              |
 | `dispatcher` | Routes requests to appropriate handlers |
 
 ## Development Workflow
@@ -46,6 +46,7 @@ node scripts/validate-plugin.js .
 ```
 
 This checks:
+
 - Required file structure
 - Export formats
 - Command definitions
@@ -92,7 +93,7 @@ export const description = 'Review code for issues';
 export const steps = [
   { action: 'scan', target: 'modified-files' },
   { action: 'analyze', using: 'review-rules' },
-  { action: 'present', format: 'markdown' }
+  { action: 'present', format: 'markdown' },
 ];
 ```
 
@@ -126,7 +127,7 @@ export async function scan(query, options = {}) {
 // lib/scorer.js
 export function rank(results, criteria = defaultCriteria) {
   return results
-    .map(r => ({ ...r, score: calculateScore(r, criteria) }))
+    .map((r) => ({ ...r, score: calculateScore(r, criteria) }))
     .sort((a, b) => b.score - a.score);
 }
 ```
@@ -137,9 +138,12 @@ export function rank(results, criteria = defaultCriteria) {
 // lib/presenter.js
 export function format(results, format = 'markdown') {
   switch (format) {
-    case 'markdown': return formatMarkdown(results);
-    case 'json': return formatJson(results);
-    case 'terminal': return formatTerminal(results);
+    case 'markdown':
+      return formatMarkdown(results);
+    case 'json':
+      return formatJson(results);
+    case 'terminal':
+      return formatTerminal(results);
   }
 }
 ```
@@ -189,12 +193,14 @@ node scripts/validate-plugin.js .
 ```
 
 **Required Structure:**
+
 - `commands/` - At least one valid command
 - `skills/` - Skill definitions (optional)
 - `agents/` - Agent configurations (optional)
 - `lib/` - Core modules
 
 **Command Requirements:**
+
 - `name` - String export
 - `description` - String export
 - `handler` - Async function export
@@ -225,12 +231,12 @@ jade-dev-assist (this project)
 
 ### Integration Points
 
-| Project | Integration |
-|---------|-------------|
-| jade-cli | Command dispatch and response formatting |
-| jade-index | Semantic code search via API |
-| claude-objects | MCP tool invocation |
-| jade-ide | Shared context and protocols |
+| Project        | Integration                              |
+| -------------- | ---------------------------------------- |
+| jade-cli       | Command dispatch and response formatting |
+| jade-index     | Semantic code search via API             |
+| claude-objects | MCP tool invocation                      |
+| jade-ide       | Shared context and protocols             |
 
 ### Orchestration Flow
 
@@ -252,6 +258,7 @@ Response (jade-cli)
 ```
 
 When making changes, consider impact on:
+
 - **jade-cli**: Response formats and latency
 - **jade-index**: Query patterns and result handling
 - **claude-objects**: Tool invocation protocols

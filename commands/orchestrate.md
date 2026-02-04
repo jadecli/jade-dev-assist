@@ -1,7 +1,7 @@
 ---
 name: jade:orchestrate
 description: Central orchestrator - scan all projects, prioritize tasks, display ranked list, dispatch workers
-argument-hint: "[list | dispatch <id> | status | milestones]"
+argument-hint: '[list | dispatch <id> | status | milestones]'
 allowed-tools: [Read, Write, Bash, Glob, Grep, Teammate]
 ---
 
@@ -17,12 +17,12 @@ Central command for the jadecli ecosystem. Scans tasks across all 8 projects, co
 
 ## Subcommands
 
-| Command | Description |
-|---------|-------------|
-| `list` | (Default) Scan all projects, compute scores, display ranked table |
-| `status` | Show tasks currently in_progress across all projects |
-| `milestones` | Show per-project milestone progress (completed/total) |
-| `dispatch <id>` | (Phase 2) Select a task and dispatch a swarm worker |
+| Command         | Description                                                       |
+| --------------- | ----------------------------------------------------------------- |
+| `list`          | (Default) Scan all projects, compute scores, display ranked table |
+| `status`        | Show tasks currently in_progress across all projects              |
+| `milestones`    | Show per-project milestone progress (completed/total)             |
+| `dispatch <id>` | (Phase 2) Select a task and dispatch a swarm worker               |
 
 ## Examples
 

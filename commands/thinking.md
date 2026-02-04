@@ -1,7 +1,7 @@
 ---
 name: jade:thinking
 description: Configure extended thinking mode and token budgets
-argument-hint: "[--enable | --disable | --budget <tokens>]"
+argument-hint: '[--enable | --disable | --budget <tokens>]'
 allowed-tools: [Read, Write]
 ---
 
@@ -15,23 +15,23 @@ allowed-tools: [Read, Write]
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--enable` | Enable extended thinking |
-| `--disable` | Disable extended thinking |
-| `--budget <n>` | Set token budget (1024-31999) |
-| `--status` | Show current thinking configuration |
-| `--auto` | Enable auto-detection for complex tasks |
+| Flag           | Description                             |
+| -------------- | --------------------------------------- |
+| `--enable`     | Enable extended thinking                |
+| `--disable`    | Disable extended thinking               |
+| `--budget <n>` | Set token budget (1024-31999)           |
+| `--status`     | Show current thinking configuration     |
+| `--auto`       | Enable auto-detection for complex tasks |
 
 ## Token Budget Guidelines
 
-| Budget | Use Case |
-|--------|----------|
-| `1024-4000` | Simple analysis, quick reasoning |
-| `4000-8000` | Moderate complexity, debugging |
-| `8000-16000` | Complex problems, architecture |
+| Budget        | Use Case                          |
+| ------------- | --------------------------------- |
+| `1024-4000`   | Simple analysis, quick reasoning  |
+| `4000-8000`   | Moderate complexity, debugging    |
+| `8000-16000`  | Complex problems, architecture    |
 | `16000-24000` | Deep analysis, competition coding |
-| `24000-31999` | Maximum depth, formal proofs |
+| `24000-31999` | Maximum depth, formal proofs      |
 
 ## Examples
 
@@ -55,6 +55,7 @@ allowed-tools: [Read, Write]
 ```
 
 Output:
+
 ```
 🧠 Extended Thinking Configuration
 
@@ -77,6 +78,7 @@ Press Ctrl+O in Claude Code to view thinking in real-time.
 ```
 
 Automatically enables extended thinking when detecting:
+
 - "debug", "optimize", "analyze" keywords
 - Complex algorithms or data structures
 - Architecture and design discussions
@@ -85,6 +87,7 @@ Automatically enables extended thinking when detecting:
 ## Best Practices
 
 **Use Extended Thinking For:**
+
 - Mathematical proofs
 - Competition-level coding
 - Complex debugging
@@ -92,6 +95,7 @@ Automatically enables extended thinking when detecting:
 - Multi-step analysis
 
 **Avoid For:**
+
 - Simple questions
 - Basic code generation
 - Quick lookups

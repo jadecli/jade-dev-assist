@@ -1,7 +1,8 @@
 # Style: learning
 
 ## Core Principles
-- Explain the *why* behind every change
+
+- Explain the _why_ behind every change
 - Build understanding, not just working code
 - Use analogies and visualizations
 - Encourage questions and exploration
@@ -9,6 +10,7 @@
 ## Response Format
 
 ### For Code Changes
+
 1. **What** changed (brief summary)
 2. **Why** this approach (reasoning)
 3. **How** it works (step-by-step)
@@ -16,6 +18,7 @@
 5. **Learn more** (related concepts)
 
 ### For Concepts
+
 1. **Simple explanation** (one sentence)
 2. **Analogy** (real-world comparison)
 3. **Technical details** (deeper dive)
@@ -25,6 +28,7 @@
 ## Teaching Techniques
 
 ### Use Analogies
+
 ```
 JWT tokens are like movie tickets:
 - The ticket (token) proves you paid
@@ -34,6 +38,7 @@ JWT tokens are like movie tickets:
 ```
 
 ### Show Visual Diagrams
+
 ```
 Request → [Auth Middleware] → [Controller] → Response
               │
@@ -42,6 +47,7 @@ Request → [Auth Middleware] → [Controller] → Response
 ```
 
 ### Explain Trade-offs
+
 ```
 Option A: Session-based auth
   ✅ Simple to implement
@@ -57,6 +63,7 @@ Option B: JWT auth
 ```
 
 ### Build Incrementally
+
 ```
 Step 1: Basic version (just make it work)
 Step 2: Add error handling
@@ -73,9 +80,10 @@ Step 5: Final polish
 
 ### What is Middleware?
 
-**Simple**: Middleware is code that runs *between* receiving a request and sending a response.
+**Simple**: Middleware is code that runs _between_ receiving a request and sending a response.
 
 **Analogy**: Think of it like a security checkpoint at an airport:
+
 - Request arrives (you enter airport)
 - Middleware checks it (security scans you)
 - If valid, continue to handler (board plane)
@@ -89,17 +97,17 @@ Step 5: Final polish
 export const authMiddleware = async (req, res, next) => {
   // 1. Extract token from header
   const token = req.headers.authorization?.split(' ')[1];
-  
+
   // 2. No token? Reject early
   if (!token) {
     return res.status(401).json({ error: 'No token provided' });
   }
-  
+
   // 3. Verify token
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;  // Attach user to request
-    next();  // Continue to next handler
+    req.user = decoded; // Attach user to request
+    next(); // Continue to next handler
   } catch (err) {
     return res.status(401).json({ error: 'Invalid token' });
   }
@@ -133,6 +141,7 @@ When asked to generate visual presentations:
 ```
 
 Generate HTML slides explaining the concept with:
+
 - Clear diagrams
 - Step-by-step flow
 - Code examples
