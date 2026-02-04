@@ -14,9 +14,14 @@
       "status": "completed",
       "complexity": "M",
       "blocked_by": [],
-      "unlocks": ["jade-dev-assist/implement-scorer", "jade-dev-assist/implement-presenter"],
+      "unlocks": [
+        "jade-dev-assist/implement-scorer",
+        "jade-dev-assist/implement-presenter"
+      ],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Read and merge task files from all 8 jadecli projects into a unified list",
         "benefit": "Foundation for the orchestrator - without scanning, nothing else works",
@@ -41,10 +46,16 @@
       "description": "Implement the priority scoring algorithm from Section 5 of the design doc. Compute a weighted score from 0-100 for each task based on project maturity (0.20), task impact (0.30), dependency status (0.20), effort-to-value ratio (0.15), and developer preference (0.15). Handle priority_override fields.",
       "status": "completed",
       "complexity": "M",
-      "blocked_by": ["jade-dev-assist/implement-scanner"],
-      "unlocks": ["jade-dev-assist/implement-presenter"],
+      "blocked_by": [
+        "jade-dev-assist/implement-scanner"
+      ],
+      "unlocks": [
+        "jade-dev-assist/implement-presenter"
+      ],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Compute numeric priority scores for all tasks using the weighted algorithm",
         "benefit": "Automated prioritization removes the need for manual backlog grooming",
@@ -71,10 +82,17 @@
       "description": "Implement the terminal display module that renders the ranked task list as a formatted table. Show columns for rank, project name, task title, computed score, and complexity. Support configurable display count (default 10).",
       "status": "completed",
       "complexity": "S",
-      "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
-      "unlocks": ["jade-dev-assist/create-orchestrate-command"],
+      "blocked_by": [
+        "jade-dev-assist/implement-scanner",
+        "jade-dev-assist/implement-scorer"
+      ],
+      "unlocks": [
+        "jade-dev-assist/create-orchestrate-command"
+      ],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Formatted terminal table showing ranked tasks across all projects",
         "benefit": "Clean visual display makes the orchestrator output scannable and actionable",
@@ -99,10 +117,15 @@
       "description": "Implement the worker dispatch module that constructs a swarm worker prompt and launches it in the target project directory. Read the task details, project CLAUDE.md, and relevant files. Enforce the 60K token initial prompt cap. Set working directory and dispatch with max_turns: 25.",
       "status": "completed",
       "complexity": "L",
-      "blocked_by": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
+      "blocked_by": [
+        "jade-dev-assist/implement-scanner",
+        "jade-dev-assist/implement-scorer"
+      ],
       "unlocks": [],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Construct and launch swarm worker prompts in target project directories",
         "benefit": "Automates the entire dispatch workflow from task selection to worker execution",
@@ -129,9 +152,14 @@
       "status": "completed",
       "complexity": "M",
       "blocked_by": [],
-      "unlocks": ["jade-dev-assist/implement-scanner", "jade-dev-assist/implement-scorer"],
+      "unlocks": [
+        "jade-dev-assist/implement-scanner",
+        "jade-dev-assist/implement-scorer"
+      ],
       "milestone": "Orchestrator MVP",
-      "labels": ["test"],
+      "labels": [
+        "test"
+      ],
       "feature": {
         "description": "TDD test suites for scanner and scorer modules",
         "benefit": "Tests define the contract before implementation, ensuring correctness from the start",
@@ -157,10 +185,14 @@
       "description": "Create the commands/orchestrate.md command definition that wires together the scanner, scorer, and presenter modules. Support subcommands: list, dispatch, add, batch, milestones, status, reprioritize, and init.",
       "status": "completed",
       "complexity": "S",
-      "blocked_by": ["jade-dev-assist/implement-presenter"],
+      "blocked_by": [
+        "jade-dev-assist/implement-presenter"
+      ],
       "unlocks": [],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "The jade:orchestrate command definition with all subcommands",
         "benefit": "Single entry point for all orchestrator functionality",
@@ -184,9 +216,13 @@
       "status": "completed",
       "complexity": "M",
       "blocked_by": [],
-      "unlocks": ["jade-dev-assist/status-updater"],
+      "unlocks": [
+        "jade-dev-assist/status-updater"
+      ],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Actually spawn Claude Code workers from the orchestrator",
         "benefit": "Closes the loop from task ranking to actual execution",
@@ -214,10 +250,14 @@
       "description": "Add lib/status-updater.js that tracks worker completion and updates task status back to completed. Add lib/milestone-tracker.js that computes milestone progress (X/Y tasks done) and can update roadmap/current.md. Tests for both modules.",
       "status": "completed",
       "complexity": "M",
-      "blocked_by": ["jade-dev-assist/worker-execution"],
+      "blocked_by": [
+        "jade-dev-assist/worker-execution"
+      ],
       "unlocks": [],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Automated status tracking and milestone progress reporting",
         "benefit": "Closes the feedback loop so orchestrator always has current task state",
@@ -247,7 +287,9 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator MVP",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Tiered model dispatch -- Opus for code gen, local models for utility tasks",
         "benefit": "Save API tokens by routing trivial tasks to free local inference",
@@ -286,7 +328,10 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator v2",
-      "labels": ["feature", "observability"],
+      "labels": [
+        "feature",
+        "observability"
+      ],
       "feature": {
         "description": "Structured JSON logging for all lib modules",
         "benefit": "Machine-parseable logs for debugging and monitoring orchestrator runs",
@@ -317,7 +362,9 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator v2",
-      "labels": ["feature"],
+      "labels": [
+        "feature"
+      ],
       "feature": {
         "description": "Token budget enforcement in dispatcher",
         "benefit": "Prevent worker dispatch failures due to oversized prompts",
@@ -345,7 +392,10 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator v2",
-      "labels": ["test", "integration"],
+      "labels": [
+        "test",
+        "integration"
+      ],
       "feature": {
         "description": "End-to-end integration tests for orchestration workflow",
         "benefit": "Confidence that all orchestrator components work together correctly",
@@ -373,7 +423,9 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator v2",
-      "labels": ["infra"],
+      "labels": [
+        "infra"
+      ],
       "feature": {
         "description": "Pre-commit validation for tests and plugin structure",
         "benefit": "Prevent broken commits from being pushed",
@@ -402,7 +454,10 @@
       "blocked_by": [],
       "unlocks": [],
       "milestone": "Orchestrator v2",
-      "labels": ["feature", "reliability"],
+      "labels": [
+        "feature",
+        "reliability"
+      ],
       "feature": {
         "description": "Robust error recovery and validation for malformed task files",
         "benefit": "Better developer experience when task files have typos or formatting issues",
@@ -430,9 +485,15 @@
       "status": "completed",
       "complexity": "L",
       "blocked_by": [],
-      "unlocks": ["jade-dev-assist/merge-anthropic-workflow-pr", "jade-dev-assist/install-github-app"],
+      "unlocks": [
+        "jade-dev-assist/merge-anthropic-workflow-pr",
+        "jade-dev-assist/install-github-app"
+      ],
       "milestone": "Phase 3 Release",
-      "labels": ["feature", "integration"],
+      "labels": [
+        "feature",
+        "integration"
+      ],
       "feature": {
         "description": "Simplified one-way sync following Anthropic's build-first philosophy",
         "benefit": "Tasks visible on GitHub for project tracking via simple issue creation",
@@ -458,12 +519,17 @@
       "id": "jade-dev-assist/coderabbit-review-pr4",
       "title": "Address CodeRabbit review on PR #4",
       "description": "CodeRabbit reviewed PR #4 and requested 1 change: fix stale header comment in test file. Fix has been pushed, waiting for CodeRabbit to re-review and approve.",
-      "status": "in_progress",
+      "status": "completed",
       "complexity": "XS",
       "blocked_by": [],
-      "unlocks": ["jade-dev-assist/merge-anthropic-workflow-pr"],
+      "unlocks": [
+        "jade-dev-assist/merge-anthropic-workflow-pr"
+      ],
       "milestone": "Phase 3 Release",
-      "labels": ["pr-review", "coderabbit"],
+      "labels": [
+        "pr-review",
+        "coderabbit"
+      ],
       "feature": {
         "description": "CodeRabbit automated code review",
         "benefit": "AI-powered code quality checks before merge",
@@ -479,18 +545,26 @@
         "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/4"
       ],
       "created_at": "2026-02-04T22:19:29Z",
-      "updated_at": "2026-02-04T22:30:00Z"
+      "updated_at": "2026-02-04T22:30:00Z",
+      "completed_at": "2026-02-04T22:22:57.228Z"
     },
     {
       "id": "jade-dev-assist/merge-anthropic-workflow-pr",
       "title": "Merge Anthropic workflow PR",
       "description": "Merge PR #4 once CodeRabbit approves. PR includes: simple issue creator, GitHub Actions workflow, comprehensive documentation, and .gitignore.",
-      "status": "pending",
+      "status": "completed",
       "complexity": "XS",
-      "blocked_by": ["jade-dev-assist/coderabbit-review-pr4"],
-      "unlocks": ["jade-dev-assist/install-github-app"],
+      "blocked_by": [
+        "jade-dev-assist/coderabbit-review-pr4"
+      ],
+      "unlocks": [
+        "jade-dev-assist/install-github-app"
+      ],
       "milestone": "Phase 3 Release",
-      "labels": ["pr-merge", "workflow"],
+      "labels": [
+        "pr-merge",
+        "workflow"
+      ],
       "feature": {
         "description": "Merge Anthropic-style workflow implementation",
         "benefit": "Enable simple GitHub workflow across jadecli ecosystem",
@@ -504,7 +578,8 @@
       "relevant_files": [
         "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/4"
       ],
-      "created_at": "2026-02-04T00:00:00Z"
+      "created_at": "2026-02-04T00:00:00Z",
+      "completed_at": "2026-02-04T22:22:57.229Z"
     },
     {
       "id": "jade-dev-assist/install-github-app",
@@ -512,10 +587,17 @@
       "description": "Install the Claude Code GitHub App on the jadecli/jade-dev-assist repository to enable @claude automation. No API keys needed - uses Claude Code subscription via GitHub App authentication.",
       "status": "pending",
       "complexity": "XS",
-      "blocked_by": ["jade-dev-assist/merge-anthropic-workflow-pr"],
-      "unlocks": ["jade-dev-assist/test-anthropic-workflow"],
+      "blocked_by": [
+        "jade-dev-assist/merge-anthropic-workflow-pr"
+      ],
+      "unlocks": [
+        "jade-dev-assist/test-anthropic-workflow"
+      ],
       "milestone": "Phase 3 Release",
-      "labels": ["setup", "github"],
+      "labels": [
+        "setup",
+        "github"
+      ],
       "feature": {
         "description": "Enable @claude automation via GitHub App",
         "benefit": "Claude can respond to @claude mentions in issues automatically",
@@ -538,10 +620,17 @@
       "description": "Test the complete workflow end-to-end: create issue from tasks.json, add @claude mention, verify GitHub Actions triggers, check Claude response/PR creation.",
       "status": "pending",
       "complexity": "S",
-      "blocked_by": ["jade-dev-assist/install-github-app"],
-      "unlocks": ["jade-dev-assist/rollout-to-all-repos"],
+      "blocked_by": [
+        "jade-dev-assist/install-github-app"
+      ],
+      "unlocks": [
+        "jade-dev-assist/rollout-to-all-repos"
+      ],
       "milestone": "Phase 3 Release",
-      "labels": ["testing", "workflow"],
+      "labels": [
+        "testing",
+        "workflow"
+      ],
       "feature": {
         "description": "End-to-end test of the Anthropic workflow",
         "benefit": "Verify workflow works before rolling out to all repos",
@@ -566,10 +655,15 @@
       "description": "Apply the simplified Anthropic workflow to all jadecli ecosystem repositories. Copy scripts/create-issues-from-tasks.js, .github/workflows/claude-assist.yml, and documentation to each repo. Update each repo's CLAUDE.md and README.md.",
       "status": "pending",
       "complexity": "L",
-      "blocked_by": ["jade-dev-assist/test-anthropic-workflow"],
+      "blocked_by": [
+        "jade-dev-assist/test-anthropic-workflow"
+      ],
       "unlocks": [],
       "milestone": "Phase 3 Release",
-      "labels": ["rollout", "ecosystem"],
+      "labels": [
+        "rollout",
+        "ecosystem"
+      ],
       "feature": {
         "description": "Ecosystem-wide Anthropic workflow deployment",
         "benefit": "Consistent simple workflow across all 13 jadecli repositories",
@@ -588,6 +682,99 @@
         "~/.jade/projects.json"
       ],
       "created_at": "2026-02-04T00:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/refactor-task-utilities",
+      "title": "Extract task utilities and improve dashboard",
+      "description": "Refactor orchestrator to extract shared utilities (task-utils.js) and improve dashboard launcher. Reduces code duplication by 166 lines.",
+      "status": "completed",
+      "complexity": "M",
+      "blocked_by": [],
+      "unlocks": [
+        "jade-dev-assist/coderabbit-review-pr5"
+      ],
+      "milestone": "Orchestrator v2",
+      "labels": [
+        "refactor",
+        "quality"
+      ],
+      "feature": {
+        "description": "Code quality improvements and DRY refactoring",
+        "benefit": "Cleaner codebase, easier maintenance, better error handling",
+        "acceptance_criteria": [
+          "✅ Extract parseTaskId, getTasksJsonPath, findTask to task-utils.js",
+          "✅ Refactor dispatcher, executor, status-updater to use shared utils",
+          "✅ Improve dashboard launcher with fallbacks and error handling",
+          "✅ All 14 test suites passing",
+          "✅ PR #5 created"
+        ]
+      },
+      "relevant_files": [
+        "lib/task-utils.js",
+        "tests/test-task-utils.js",
+        "bin/jade-dashboard",
+        "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/5"
+      ],
+      "created_at": "2026-02-04T22:22:57.229Z",
+      "completed_at": "2026-02-04T22:22:57.229Z"
+    },
+    {
+      "id": "jade-dev-assist/coderabbit-review-pr5",
+      "title": "CodeRabbit review PR #5 (refactoring)",
+      "description": "Await CodeRabbit review of PR #5 refactoring work. Address any issues found, then merge once approved.",
+      "status": "pending",
+      "complexity": "XS",
+      "blocked_by": [],
+      "unlocks": [
+        "jade-dev-assist/merge-refactoring-pr"
+      ],
+      "milestone": "Orchestrator v2",
+      "labels": [
+        "pr-review",
+        "coderabbit"
+      ],
+      "feature": {
+        "description": "AI-powered code review for refactoring PR",
+        "benefit": "Ensure refactoring maintains quality and doesn't introduce bugs",
+        "acceptance_criteria": [
+          "CodeRabbit reviews PR #5",
+          "Address any issues found",
+          "CodeRabbit approves"
+        ]
+      },
+      "relevant_files": [
+        "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/5"
+      ],
+      "created_at": "2026-02-04T22:22:57.229Z"
+    },
+    {
+      "id": "jade-dev-assist/merge-refactoring-pr",
+      "title": "Merge refactoring PR #5",
+      "description": "Merge PR #5 once CodeRabbit approves. Completes code quality improvements.",
+      "status": "pending",
+      "complexity": "XS",
+      "blocked_by": [
+        "jade-dev-assist/coderabbit-review-pr5"
+      ],
+      "unlocks": [],
+      "milestone": "Orchestrator v2",
+      "labels": [
+        "pr-merge"
+      ],
+      "feature": {
+        "description": "Merge refactoring improvements",
+        "benefit": "Cleaner codebase deployed to main",
+        "acceptance_criteria": [
+          "CodeRabbit approves",
+          "All tests pass",
+          "Merge to main",
+          "Delete refactor/task-utilities branch"
+        ]
+      },
+      "relevant_files": [
+        "Pull Request: https://github.com/jadecli/jade-dev-assist/pull/5"
+      ],
+      "created_at": "2026-02-04T22:22:57.229Z"
     }
   ]
 }
