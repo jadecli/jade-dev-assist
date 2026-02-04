@@ -1,7 +1,7 @@
 ---
 name: jade:init
 description: Initialize JADE-DEV-ASSIST in a project with optional template
-argument-hint: "[project-name] [--template <template>]"
+argument-hint: '[project-name] [--template <template>]'
 allowed-tools: [Read, Write, Bash, Glob, Grep]
 ---
 
@@ -15,25 +15,25 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 
 ## Options
 
-| Flag | Description | Default |
-|------|-------------|---------|
-| `--template` | Project template | `basic` |
-| `--workflow` | Workflow style | `superpowers` |
-| `--no-global` | Skip global config check | `false` |
-| `--force` | Overwrite existing files | `false` |
+| Flag          | Description              | Default       |
+| ------------- | ------------------------ | ------------- |
+| `--template`  | Project template         | `basic`       |
+| `--workflow`  | Workflow style           | `superpowers` |
+| `--no-global` | Skip global config check | `false`       |
+| `--force`     | Overwrite existing files | `false`       |
 
 ## Templates
 
-| Template | Description |
-|----------|-------------|
-| `basic` | Minimal setup with core configs |
-| `typescript-react` | Next.js/React with TypeScript |
-| `typescript-node` | Node.js backend with TypeScript |
-| `python-fastapi` | FastAPI with modern Python |
-| `python-django` | Django with best practices |
-| `go-api` | Go API with standard layout |
-| `rust-cli` | Rust CLI application |
-| `full` | All features enabled |
+| Template           | Description                     |
+| ------------------ | ------------------------------- |
+| `basic`            | Minimal setup with core configs |
+| `typescript-react` | Next.js/React with TypeScript   |
+| `typescript-node`  | Node.js backend with TypeScript |
+| `python-fastapi`   | FastAPI with modern Python      |
+| `python-django`    | Django with best practices      |
+| `go-api`           | Go API with standard layout     |
+| `rust-cli`         | Rust CLI application            |
+| `full`             | All features enabled            |
 
 ## Execution Steps
 
@@ -72,18 +72,23 @@ Based on template and detected context:
 # Project: {project-name}
 
 ## Overview
+
 [Auto-generated based on template and detected files]
 
 ## Tech Stack
+
 [Detected from package.json, requirements.txt, go.mod, etc.]
 
 ## Conventions
+
 [Template-specific conventions]
 
 ## Important Files
+
 [Key files Claude should reference]
 
 ## Development Workflow
+
 [Based on --workflow flag]
 ```
 
@@ -117,6 +122,7 @@ Based on template and detected context:
 ### 5. Detect Existing Context
 
 Scan for and incorporate:
+
 - `package.json` → Node.js dependencies
 - `requirements.txt` / `pyproject.toml` → Python dependencies
 - `go.mod` → Go modules
@@ -151,6 +157,7 @@ Scan for and incorporate:
 
 ```markdown
 ## Tech Stack
+
 - Framework: Next.js 14+ with App Router
 - Language: TypeScript 5.x (strict mode)
 - Styling: Tailwind CSS
@@ -159,6 +166,7 @@ Scan for and incorporate:
 - Linting: ESLint + Prettier
 
 ## Conventions
+
 - Components: PascalCase, one component per file
 - Hooks: useXxx naming, custom hooks in /hooks
 - Types: Explicit types, no `any`
@@ -167,20 +175,24 @@ Scan for and incorporate:
 
 ## File Structure
 ```
+
 src/
-├── app/           # Next.js app router
-├── components/    # Reusable UI components
-├── hooks/         # Custom React hooks
-├── lib/           # Utilities and helpers
-├── types/         # TypeScript type definitions
-└── styles/        # Global styles
+├── app/ # Next.js app router
+├── components/ # Reusable UI components
+├── hooks/ # Custom React hooks
+├── lib/ # Utilities and helpers
+├── types/ # TypeScript type definitions
+└── styles/ # Global styles
+
 ```
+
 ```
 
 ### python-fastapi
 
 ```markdown
 ## Tech Stack
+
 - Framework: FastAPI
 - Language: Python 3.11+
 - Database: SQLAlchemy + Alembic
@@ -189,6 +201,7 @@ src/
 - Linting: ruff + mypy
 
 ## Conventions
+
 - Endpoints: snake_case, grouped by resource
 - Models: Pydantic for API, SQLAlchemy for DB
 - Dependencies: Dependency injection via FastAPI
@@ -196,21 +209,24 @@ src/
 
 ## File Structure
 ```
+
 app/
-├── api/           # Route handlers
-├── core/          # Config, security
-├── db/            # Database models
-├── schemas/       # Pydantic schemas
-├── services/      # Business logic
-└── tests/         # Test files
+├── api/ # Route handlers
+├── core/ # Config, security
+├── db/ # Database models
+├── schemas/ # Pydantic schemas
+├── services/ # Business logic
+└── tests/ # Test files
+
 ```
+
 ```
 
 ## Error Handling
 
-| Error | Resolution |
-|-------|------------|
-| `.claude/` exists | Use `--force` to overwrite |
-| Invalid template | Show available templates |
-| Detection failed | Fallback to basic template |
+| Error             | Resolution                  |
+| ----------------- | --------------------------- |
+| `.claude/` exists | Use `--force` to overwrite  |
+| Invalid template  | Show available templates    |
+| Detection failed  | Fallback to basic template  |
 | Permission denied | Check directory permissions |

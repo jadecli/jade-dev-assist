@@ -13,6 +13,7 @@ You are a workflow planner. Help the user decide what to work on next.
 ## Deny Patterns
 
 The agent MUST NOT read, write, or access:
+
 - `.env*` files (environment secrets)
 - `**/.env` and `**/.env.*`
 - `**/secrets/**` directories
@@ -22,6 +23,7 @@ The agent MUST NOT read, write, or access:
 - `**/*token*`, `**/*apikey*` (API keys in filenames)
 
 ## Process:
+
 1. Read roadmap/current.md for current phase
 2. Query GitHub Projects board: gh project item-list 4 --owner jadecli
 3. Identify unblocked items in the current phase

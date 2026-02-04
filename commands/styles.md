@@ -1,7 +1,7 @@
 ---
 name: jade:styles
 description: Manage and apply response styles for different development contexts
-argument-hint: "[--list | --apply <style> | --create <name>]"
+argument-hint: '[--list | --apply <style> | --create <name>]'
 allowed-tools: [Read, Write, Bash]
 ---
 
@@ -15,25 +15,27 @@ allowed-tools: [Read, Write, Bash]
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--list` | List all available styles |
-| `--apply <style>` | Apply a style to current conversation |
-| `--create <name>` | Create a new custom style |
-| `--edit <style>` | Edit an existing style |
-| `--delete <style>` | Delete a custom style |
-| `--preview <style>` | Preview style with sample output |
-| `--once` | Apply style for next message only |
+| Flag                | Description                           |
+| ------------------- | ------------------------------------- |
+| `--list`            | List all available styles             |
+| `--apply <style>`   | Apply a style to current conversation |
+| `--create <name>`   | Create a new custom style             |
+| `--edit <style>`    | Edit an existing style                |
+| `--delete <style>`  | Delete a custom style                 |
+| `--preview <style>` | Preview style with sample output      |
+| `--once`            | Apply style for next message only     |
 
 ## Built-in Styles
 
 ### Claude Defaults
+
 - `normal` - Balanced responses
 - `concise` - Shorter, direct
 - `formal` - Professional, polished
 - `explanatory` - Educational, detailed
 
 ### IDE Optimized
+
 - `developer-concise` - Code-first, minimal prose
 - `code-review` - Structured PR feedback
 - `debugging` - Step-by-step analysis
@@ -84,10 +86,9 @@ allowed-tools: [Read, Write, Bash]
 ---
 name: my-custom-style
 description: Brief description for selection menu
-basedOn: concise  # Optional base style
+basedOn: concise # Optional base style
 tags: [development, technical]
 ---
-
 # Style Instructions
 
 ## Core Principles
@@ -102,8 +103,8 @@ tags: [development, technical]
 
 ## Style Locations
 
-| Scope | Path | Priority |
-|-------|------|----------|
-| Built-in | Plugin defaults | Lowest |
-| User | `~/.claude/output-styles/` | Medium |
-| Project | `.claude/styles/` | Highest |
+| Scope    | Path                       | Priority |
+| -------- | -------------------------- | -------- |
+| Built-in | Plugin defaults            | Lowest   |
+| User     | `~/.claude/output-styles/` | Medium   |
+| Project  | `.claude/styles/`          | Highest  |

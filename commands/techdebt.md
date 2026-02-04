@@ -1,7 +1,7 @@
 ---
 name: jade:techdebt
 description: Find and kill duplicated code, unused imports, and tech debt - run at end of every session
-argument-hint: "[--fix | --report | --watch]"
+argument-hint: '[--fix | --report | --watch]'
 allowed-tools: [Read, Write, Bash, Glob, Grep]
 ---
 
@@ -17,34 +17,38 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--report` | Generate report without fixing (default) |
-| `--fix` | Automatically fix issues |
-| `--watch` | Run continuously during session |
+| Flag                 | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| `--report`           | Generate report without fixing (default)         |
+| `--fix`              | Automatically fix issues                         |
+| `--watch`            | Run continuously during session                  |
 | `--severity <level>` | Filter by severity (low, medium, high, critical) |
-| `--scope <path>` | Limit to specific directory |
+| `--scope <path>`     | Limit to specific directory                      |
 
 ## What It Detects
 
 ### 1. Code Duplication
+
 - Duplicated functions across files
 - Copy-pasted code blocks (5+ lines)
 - Similar logic with minor variations
 
 ### 2. Dead Code
+
 - Unused imports
 - Unused variables
 - Unreachable code
 - Deprecated functions still present
 
 ### 3. Complexity Issues
+
 - Functions > 50 lines
 - Files > 500 lines
 - Cyclomatic complexity > 10
 - Deep nesting (4+ levels)
 
 ### 4. Consistency Problems
+
 - Mixed coding styles
 - Inconsistent naming
 - TODO/FIXME comments
@@ -59,6 +63,7 @@ allowed-tools: [Read, Write, Bash, Glob, Grep]
 ```
 
 Output:
+
 ```
 🔍 Tech Debt Scan Results
 
@@ -67,7 +72,7 @@ Output:
    Dead code: 12 instances
    Complexity: 5 warnings
    Consistency: 8 issues
-   
+
 🔴 CRITICAL (fix now)
    • src/utils/auth.ts:45-78 duplicates src/lib/auth.ts:23-56
    • src/api/users.ts has 3 unused imports
@@ -89,6 +94,7 @@ Output:
 ```
 
 What gets auto-fixed:
+
 - Unused imports removed
 - Console.log statements removed
 - Trailing whitespace cleaned
@@ -107,6 +113,7 @@ Runs in background, alerts when new debt introduced.
 ### Recommended: End of Every Session
 
 Add to your routine:
+
 ```
 1. Complete feature work
 2. Run /jade:techdebt
@@ -125,6 +132,7 @@ Only shows issues that should block PR.
 ### CI Integration
 
 Add to `.github/workflows/techdebt.yml`:
+
 ```yaml
 - name: Tech Debt Check
   run: claude --command "/jade:techdebt --report --severity critical"
@@ -136,19 +144,21 @@ Add to `.github/workflows/techdebt.yml`:
 ### Duplication Detection
 
 Uses AST analysis to find:
+
 ```javascript
 // Duplicate 1: src/utils/format.ts
 export function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
 
-// Duplicate 2: src/helpers/date.ts  
+// Duplicate 2: src/helpers/date.ts
 export function formatDateString(d: Date): string {
   return d.toISOString().split('T')[0];
 }
 ```
 
 Recommendation:
+
 ```
 → Consolidate to single location: src/utils/date.ts
 → Export and import where needed
@@ -164,12 +174,12 @@ function oldHandler() { ... }             // Never called
 
 ### Complexity Metrics
 
-| Metric | Threshold | Action |
-|--------|-----------|--------|
-| Lines per function | > 50 | Split into smaller functions |
-| Lines per file | > 500 | Consider module extraction |
-| Cyclomatic complexity | > 10 | Simplify conditionals |
-| Nesting depth | > 4 | Extract to functions |
+| Metric                | Threshold | Action                       |
+| --------------------- | --------- | ---------------------------- |
+| Lines per function    | > 50      | Split into smaller functions |
+| Lines per file        | > 500     | Consider module extraction   |
+| Cyclomatic complexity | > 10      | Simplify conditionals        |
+| Nesting depth         | > 4       | Extract to functions         |
 
 ## Configuration
 
@@ -208,13 +218,13 @@ Create `.jade/techdebt.json`:
 
 ## Language Support
 
-| Language | Duplication | Dead Code | Complexity |
-|----------|-------------|-----------|------------|
-| TypeScript | ✓ | ✓ | ✓ |
-| JavaScript | ✓ | ✓ | ✓ |
-| Python | ✓ | ✓ | ✓ |
-| Go | ✓ | ✓ | ✓ |
-| Rust | ✓ | ✓ | ✓ |
+| Language   | Duplication | Dead Code | Complexity |
+| ---------- | ----------- | --------- | ---------- |
+| TypeScript | ✓           | ✓         | ✓          |
+| JavaScript | ✓           | ✓         | ✓          |
+| Python     | ✓           | ✓         | ✓          |
+| Go         | ✓           | ✓         | ✓          |
+| Rust       | ✓           | ✓         | ✓          |
 
 ## Best Practices
 

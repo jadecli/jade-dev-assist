@@ -9,6 +9,7 @@ dependencies: []
 ## Overview
 
 This skill manages Claude's three-tier personalization system:
+
 1. **Profile Preferences** - Account-wide settings (`~/.claude/CLAUDE.md`)
 2. **Project Instructions** - Workspace-scoped context (`.claude/CLAUDE.md`)
 3. **Response Styles** - Per-conversation formatting (`~/.claude/output-styles/`)
@@ -42,6 +43,7 @@ This skill manages Claude's three-tier personalization system:
 ```
 
 This will:
+
 1. Check for existing `~/.claude/CLAUDE.md`
 2. Create if missing with default template
 3. Detect project context
@@ -54,6 +56,7 @@ This will:
 ```
 
 Displays:
+
 - Active profile preferences
 - Project instructions (if any)
 - Current style
@@ -78,14 +81,17 @@ Displays:
 # Developer Profile
 
 ## About Me
+
 - [Your role and experience]
 - [Preferred languages/frameworks]
 - [Coding style preferences]
 
 ## Preferences
+
 - [General preferences that apply everywhere]
 
 ## Communication
+
 - [How you prefer Claude to respond]
 ```
 
@@ -95,17 +101,21 @@ Displays:
 # Project Context
 
 ## Overview
+
 [Project description]
 
 ## Tech Stack
+
 - [Languages]
 - [Frameworks]
 - [Tools]
 
 ## Conventions
+
 [Project-specific coding standards]
 
 ## Important Files
+
 - [Key files Claude should know about]
 ```
 
@@ -147,6 +157,7 @@ Displays:
 # Developer Profile
 
 ## Preferences
+
 - Prefer concise, code-first responses
 - Use modern JavaScript/TypeScript patterns
 - Follow standard formatting conventions
@@ -158,16 +169,19 @@ Displays:
 # Developer Profile
 
 ## About Me
+
 I'm a senior full-stack developer specializing in TypeScript, React, and Node.js.
 I have 10+ years of experience and prefer functional programming patterns.
 
 ## Technical Preferences
+
 - **Languages**: TypeScript, Python, Go
 - **Frontend**: React, Next.js, Tailwind CSS
 - **Backend**: Node.js, PostgreSQL, Redis
 - **Tools**: Git, Docker, VS Code
 
 ## Coding Style
+
 - Always use async/await over .then()
 - Prefer named exports over default exports
 - Use descriptive variable names (no single letters except loops)
@@ -175,12 +189,14 @@ I have 10+ years of experience and prefer functional programming patterns.
 - Always include TypeScript types (no `any`)
 
 ## Communication Preferences
+
 - Provide code first, explanations second
 - Use minimal comments in code
 - Show full file paths in code blocks
 - Include test examples when relevant
 
 ## Common Tasks
+
 - Code review and refactoring
 - API design and implementation
 - Database schema design
@@ -189,12 +205,12 @@ I have 10+ years of experience and prefer functional programming patterns.
 
 ## Error Handling
 
-| Error | Resolution |
-|-------|------------|
+| Error                       | Resolution                       |
+| --------------------------- | -------------------------------- |
 | Missing ~/.claude directory | Create with `mkdir -p ~/.claude` |
-| Invalid CLAUDE.md syntax | Validate markdown structure |
-| Conflicting settings | Project settings override global |
-| Permission denied | Check file permissions |
+| Invalid CLAUDE.md syntax    | Validate markdown structure      |
+| Conflicting settings        | Project settings override global |
+| Permission denied           | Check file permissions           |
 
 ## Best Practices
 

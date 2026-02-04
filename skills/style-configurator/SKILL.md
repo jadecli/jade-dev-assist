@@ -14,24 +14,24 @@ Manages Claude's response styles with IDE-optimized presets and custom style cre
 
 ### Claude Default Styles
 
-| Style | Description |
-|-------|-------------|
-| `normal` | Balanced responses (default) |
-| `concise` | Shorter, direct answers |
-| `formal` | Polished, professional |
-| `explanatory` | Educational, detailed |
+| Style         | Description                  |
+| ------------- | ---------------------------- |
+| `normal`      | Balanced responses (default) |
+| `concise`     | Shorter, direct answers      |
+| `formal`      | Polished, professional       |
+| `explanatory` | Educational, detailed        |
 
 ### JADE-DEV-ASSIST IDE Styles
 
-| Style | Description | Best For |
-|-------|-------------|----------|
-| `developer-concise` | Code-first, minimal prose | Daily coding |
-| `code-review` | Structured feedback format | PR reviews |
-| `debugging` | Step-by-step analysis | Bug fixing |
-| `documentation` | Clean prose, API-ready | READMEs, docs |
-| `refactoring` | Before/after comparisons | Code cleanup |
-| `architecture` | Diagrams, trade-offs | System design |
-| `learning` | Detailed explanations | New concepts |
+| Style               | Description                | Best For      |
+| ------------------- | -------------------------- | ------------- |
+| `developer-concise` | Code-first, minimal prose  | Daily coding  |
+| `code-review`       | Structured feedback format | PR reviews    |
+| `debugging`         | Step-by-step analysis      | Bug fixing    |
+| `documentation`     | Clean prose, API-ready     | READMEs, docs |
+| `refactoring`       | Before/after comparisons   | Code cleanup  |
+| `architecture`      | Diagrams, trade-offs       | System design |
+| `learning`          | Detailed explanations      | New concepts  |
 
 ## Usage
 
@@ -78,17 +78,20 @@ Manages Claude's response styles with IDE-optimized presets and custom style cre
 # Style: developer-concise
 
 ## Instructions
+
 - Provide code first, explanations second
 - Use minimal comments in code
 - Skip preamble and pleasantries
 - Prefer examples over prose
 
 ## Format
+
 - Code blocks with language tags
 - One-line summaries before code
 - No bullet points in explanations
 
 ## Avoid
+
 - Long introductions
 - Obvious explanations
 - Redundant confirmations
@@ -119,22 +122,31 @@ tags: [development, review, quality]
 
 ## Format Template
 ```
+
 ## Summary
+
 [Brief assessment]
 
 ## Issues
+
 ### Critical
+
 - [ ] Issue description (file:line)
 
 ### Warnings
+
 - [ ] Issue description (file:line)
 
 ## Suggestions
+
 - Consider [improvement]
 
 ## Status
+
 [APPROVED / CHANGES REQUESTED / NEEDS DISCUSSION]
+
 ```
+
 ```
 
 ## IDE Style Definitions
@@ -145,22 +157,26 @@ tags: [development, review, quality]
 # Style: developer-concise
 
 ## Core Principles
+
 - Code speaks louder than words
 - Every character should earn its place
 - Examples beat explanations
 
 ## Response Format
+
 1. One-line summary (if needed)
 2. Code block with solution
 3. Brief notes on edge cases (if any)
 
 ## Code Style
+
 - Include file path in code block header
 - Use language-appropriate conventions
 - Show complete, runnable code
 - Minimal inline comments
 
 ## Avoid
+
 - "Sure, I can help with that"
 - "Here's how you can..."
 - Explaining basic concepts
@@ -173,6 +189,7 @@ tags: [development, review, quality]
 # Style: code-review
 
 ## Review Structure
+
 1. **Quick Assessment** (1 line)
 2. **Critical Issues** (blocking)
 3. **Warnings** (should fix)
@@ -182,10 +199,12 @@ tags: [development, review, quality]
 
 ## Issue Format
 ```
+
 - 🔴 [CRITICAL] `filename:line` - Description
   ```suggestion
   // Suggested fix
   ```
+
 ```
 
 ## Severity Guidelines
@@ -205,6 +224,7 @@ tags: [development, review, quality]
 # Style: debugging
 
 ## Investigation Format
+
 1. **Understanding the Problem**
    - Restate the error/behavior
    - Identify the symptom vs root cause
@@ -225,6 +245,7 @@ tags: [development, review, quality]
    - How to avoid this in future
 
 ## Code Format
+
 - Show before/after when relevant
 - Include debug output examples
 - Highlight the key lines
@@ -236,12 +257,14 @@ tags: [development, review, quality]
 # Style: documentation
 
 ## Writing Guidelines
+
 - Write for the reader who will use this in 6 months
 - Lead with the "what" and "why" before "how"
 - Use consistent terminology
 - Include examples for every feature
 
 ## Structure (README)
+
 1. One-paragraph overview
 2. Quick start (working example in <5 min)
 3. Installation
@@ -251,11 +274,13 @@ tags: [development, review, quality]
 7. Contributing
 
 ## Code Examples
+
 - Complete and runnable
 - Include expected output
 - Show common use cases first
 
 ## Formatting
+
 - Headers for navigation
 - Tables for options/parameters
 - Code blocks with syntax highlighting
@@ -270,6 +295,7 @@ tags: [development, review, quality]
 ```
 
 The wizard will ask:
+
 1. Style name
 2. Base style (optional)
 3. Primary use case
@@ -285,6 +311,7 @@ The wizard will ask:
 ```
 
 Claude analyzes the sample for:
+
 - Sentence structure and length
 - Technical vocabulary level
 - Code/prose ratio
@@ -303,11 +330,11 @@ Use TypeScript conventions.
 
 ## Style Location
 
-| Scope | Location |
-|-------|----------|
-| User styles | `~/.claude/output-styles/` |
-| Project styles | `.claude/styles/` |
-| Plugin styles | `./config/styles/` |
+| Scope          | Location                   |
+| -------------- | -------------------------- |
+| User styles    | `~/.claude/output-styles/` |
+| Project styles | `.claude/styles/`          |
+| Plugin styles  | `./config/styles/`         |
 
 ## Best Practices
 

@@ -1,7 +1,7 @@
 ---
 name: jade:review
 description: Level up your prompting - challenge Claude, prove it works, request elegance
-argument-hint: "[grill | prove | refine | spec]"
+argument-hint: '[grill | prove | refine | spec]'
 allowed-tools: [Read, Write, Bash, Glob, Grep, Git]
 ---
 
@@ -17,12 +17,12 @@ allowed-tools: [Read, Write, Bash, Glob, Grep, Git]
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `grill` | Challenge mode - don't PR until you pass Claude's test |
-| `prove` | "Prove to me this works" - diff behavior between branches |
+| Command  | Description                                                       |
+| -------- | ----------------------------------------------------------------- |
+| `grill`  | Challenge mode - don't PR until you pass Claude's test            |
+| `prove`  | "Prove to me this works" - diff behavior between branches         |
 | `refine` | "Knowing everything you know now, implement the elegant solution" |
-| `spec` | Write detailed specs to reduce ambiguity |
+| `spec`   | Write detailed specs to reduce ambiguity                          |
 
 ## Examples
 
@@ -49,17 +49,17 @@ You don't get a PR until you pass.
 
 ❌ ISSUE 1: Race condition
    login.ts:34 - concurrent requests could cause token collision
-   
+
    How would you fix this?
-   
+
 ❌ ISSUE 2: Missing error case
    token.ts:18 - what happens if token is malformed?
-   
+
    What's your solution?
-   
+
 ❌ ISSUE 3: Test coverage gap
    No test for expired token scenario
-   
+
    Add this test.
 
 📊 Score: 2/5 - Not ready for PR
@@ -105,7 +105,7 @@ Comparing behavior: main ↔ feature/auth-refactor
 
 > "After a mediocre fix, say: 'Knowing everything you know now, scrap this and implement the elegant solution.'"
 
-```
+````
 ✨ ELEGANCE MODE
 
 Current implementation analysis:
@@ -134,15 +134,12 @@ async function authenticate(req, res) {
     // ...
   }
 }
-```
+````
 
 After (elegant):
+
 ```typescript
-const authenticate = pipe(
-  extractToken,
-  verifyToken,
-  attachUser
-);
+const authenticate = pipe(extractToken, verifyToken, attachUser);
 
 export const authMiddleware = asyncHandler(authenticate);
 ```
@@ -151,17 +148,18 @@ export const authMiddleware = asyncHandler(authenticate);
 ✅ Single responsibility
 ✅ Composable
 ✅ Testable
-```
+
+````
 
 ### Write Detailed Specs
 
 ```bash
 /jade:review spec
-```
+````
 
 > "Write detailed specs and reduce ambiguity before handing work off. The more specific you are, the better the output."
 
-```
+````
 📝 SPEC MODE
 
 Creating detailed specification...
@@ -209,9 +207,10 @@ Response 401:
 {
   "error": "Invalid credentials"
 }
-```
+````
 
 💡 Ambiguity eliminated. Ready to implement.
+
 ```
 
 ## Prompting Best Practices
@@ -220,29 +219,37 @@ Response 401:
 
 Make it your reviewer:
 ```
+
 Grill me on these changes and don't make a PR until I pass your test.
+
 ```
 
 ### 2. Request Proof
 
 Don't trust — verify:
 ```
+
 Prove to me this works. Show me the behavior diff.
+
 ```
 
 ### 3. Demand Elegance
 
 After it works, make it beautiful:
 ```
+
 Knowing everything you know now, scrap this and implement the elegant solution.
+
 ```
 
 ### 4. Reduce Ambiguity
 
 The more specific, the better:
 ```
+
 Write a detailed spec for this feature before implementing.
-```
+
+````
 
 ## Integration
 
@@ -253,7 +260,7 @@ Write a detailed spec for this feature before implementing.
 # ... plan created ...
 /jade:review spec   # Make spec more detailed
 /jade:review grill  # Review the plan
-```
+````
 
 ### With PR Workflow
 
