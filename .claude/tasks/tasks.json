@@ -422,6 +422,36 @@
         "tests/test-scanner.js"
       ],
       "created_at": "2026-02-03T18:00:00Z"
+    },
+    {
+      "id": "jade-dev-assist/github-sync",
+      "title": "Add GitHub sync for tasks to issues",
+      "description": "Implement bidirectional sync between .claude/tasks/tasks.json and GitHub Issues. Create issues for new tasks, update issue labels/status when task status changes, close issues when tasks complete. Use gh CLI for GitHub API access.",
+      "status": "pending",
+      "complexity": "L",
+      "blocked_by": [],
+      "unlocks": [],
+      "milestone": "Phase 3 Release",
+      "labels": ["feature", "integration"],
+      "feature": {
+        "description": "Bidirectional synchronization between local tasks.json files and GitHub Issues",
+        "benefit": "Tasks visible on GitHub for project tracking, status changes sync automatically in both directions",
+        "acceptance_criteria": [
+          "New tasks in tasks.json create corresponding GitHub Issues via gh CLI",
+          "Task status changes (pending -> in_progress -> completed) update issue labels",
+          "Completed tasks close their corresponding GitHub Issues",
+          "Issue label changes sync back to tasks.json status",
+          "Sync works across all 8 jadecli repos",
+          "Supports configurable label mapping (status -> GitHub labels)",
+          "npm test passes with tests for create/update/close/sync operations"
+        ]
+      },
+      "relevant_files": [
+        "lib/github-sync.js",
+        "lib/issue-mapper.js",
+        "tests/test-github-sync.js"
+      ],
+      "created_at": "2026-02-03T20:00:00Z"
     }
   ]
 }
