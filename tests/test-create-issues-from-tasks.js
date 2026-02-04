@@ -1,4 +1,4 @@
-// tests/create-issues-from-tasks.test.js
+// tests/test-create-issues-from-tasks.js
 const test = require('node:test');
 const assert = require('node:assert');
 const { readTasksFromRepo } = require('../scripts/create-issues-from-tasks');
