@@ -1,0 +1,30 @@
+# .github/workflows/claude-assist.yml
+name: Claude Assist
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  claude:
+    # Only run if @claude mentioned or issue has 'claude-assist' label
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'claude-assist'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: "--max-turns 10 --model claude-sonnet-4-5-20250929"
