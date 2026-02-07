@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/jadecli/jade-dev-assist/compare/jade-dev-assist-v1.2.0...jade-dev-assist-v1.2.1) (2026-02-07)
+
+
+### Bug Fixes
+
+* convert hooks.json to standard Claude Code format ([21c96f4](https://github.com/jadecli/jade-dev-assist/commit/21c96f4d26093466a7d7faa2c929fba66a4c3bb7))
+
 ## [1.2.0](https://github.com/jadecli/jade-dev-assist/compare/jade-dev-assist-v1.1.0...jade-dev-assist-v1.2.0) (2026-02-04)
 
 
