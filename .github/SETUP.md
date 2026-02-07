@@ -1,34 +1,35 @@
-# GitHub Actions Setup
+# GitHub App Setup
 
-## Installation (No API Key Required!)
+## Install Claude Code GitHub App
 
-This workflow uses the Claude Code GitHub App - no paid API keys needed.
+To enable @claude automation on this repository:
 
-### Option 1: GitHub App (Recommended)
+1. Visit: https://github.com/apps/claude-code
+2. Click "Install" or "Configure"
+3. Select the `jadecli/jade-dev-assist` repository
+4. Grant required permissions:
+   - Read access to issues
+   - Write access to pull requests
+   - Read access to repository contents
 
-1. Install the Claude Code GitHub App:
-   - Visit: https://github.com/apps/claude-code
-   - Click "Install"
-   - Select repositories to enable
+## Verify Installation
 
-2. That's it! The workflow uses your Claude Code subscription via GitHub App authentication.
-
-### Option 2: Self-Hosted with Docker/Ollama
-
-For free/self-hosted models:
-
-1. Set up Docker MCP or Ollama locally
-2. Configure webhook endpoint in repo settings
-3. Point to your self-hosted Claude Code instance
+Check that the app appears in:
+- Repository Settings → Integrations → GitHub Apps
+- Should show "Claude Code" as installed
 
 ## Testing the Workflow
 
-1. Create an issue: `node scripts/create-issues-from-tasks.js jade-dev-assist`
-2. Add comment: `@claude please implement this`
-3. Claude will analyze and create a PR using your subscription
+After installation, test with:
+```bash
+node scripts/create-issues-from-tasks.js jade-dev-assist
+```
 
-## Authentication
+Then add an `@claude` mention to the created issue to trigger automation.
 
-- ✅ **GitHub App**: Uses your Claude Code subscription (recommended)
-- ✅ **Docker/Ollama**: Free local models
-- ❌ **API Keys**: Not needed - we don't use paid API keys
+## Troubleshooting
+
+If @claude doesn't respond:
+- Check GitHub Actions logs (.github/workflows/claude-assist.yml)
+- Verify app has required permissions
+- Check issue has @claude mention in comment (not issue body)
