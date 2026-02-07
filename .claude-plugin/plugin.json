@@ -1,36 +1,11 @@
 {
   "name": "jade-dev-assist",
   "version": "1.0.0",
-  "description": "Advanced Claude Code plugin for JADE-IDE development workflow management with three-tier personalization",
-  "author": "jadecli",
+  "description": "Workflow orchestrator for the 8-repo jadecli ecosystem",
+  "author": {
+    "name": "jadecli"
+  },
+  "repository": "https://github.com/jadecli/jade-dev-assist",
   "license": "MIT",
-  "minClaudeVersion": "2.1.0",
-  "commands": [
-    { "name": "jade:config", "path": "commands/config.md" },
-    { "name": "jade:context-sync", "path": "commands/context-sync.md" },
-    { "name": "jade:explain", "path": "commands/explain.md" },
-    { "name": "jade:fix", "path": "commands/fix.md" },
-    { "name": "jade:init", "path": "commands/init.md" },
-    { "name": "jade:learn", "path": "commands/learn.md" },
-    { "name": "jade:orchestrate", "path": "commands/orchestrate.md" },
-    { "name": "jade:plan", "path": "commands/plan.md" },
-    { "name": "jade:query", "path": "commands/query.md" },
-    { "name": "jade:review", "path": "commands/review.md" },
-    { "name": "jade:styles", "path": "commands/styles.md" },
-    { "name": "jade:subagent", "path": "commands/subagent.md" },
-    { "name": "jade:techdebt", "path": "commands/techdebt.md" },
-    { "name": "jade:thinking", "path": "commands/thinking.md" },
-    { "name": "jade:worktree", "path": "commands/worktree.md" }
-  ],
-  "skills": [
-    { "name": "capability-toggler", "path": "skills/capability-toggler" },
-    { "name": "ide-scaffold", "path": "skills/ide-scaffold" },
-    {
-      "name": "personalization-manager",
-      "path": "skills/personalization-manager"
-    },
-    { "name": "roadmap-updater", "path": "skills/roadmap-updater" },
-    { "name": "style-configurator", "path": "skills/style-configurator" },
-    { "name": "workflow-orchestrator", "path": "skills/workflow-orchestrator" }
-  ]
+  "keywords": ["workflow", "orchestration", "tasks", "jade-ide", "ecosystem"]
 }

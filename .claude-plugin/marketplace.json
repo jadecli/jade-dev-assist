@@ -1,0 +1,15 @@
+{
+  "name": "jade-dev-assist-dev",
+  "description": "Development marketplace for jade-dev-assist plugin",
+  "owner": {
+    "name": "jadecli"
+  },
+  "plugins": [
+    {
+      "name": "jade-dev-assist",
+      "description": "Workflow orchestrator for the 8-repo jadecli ecosystem",
+      "version": "1.0.0",
+      "source": "./"
+    }
+  ]
+}
