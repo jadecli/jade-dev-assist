@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/jadecli/jade-dev-assist/compare/jade-dev-assist-v1.1.0...jade-dev-assist-v1.2.0) (2026-02-04)
+
+
+### Features
+
+* Add documentation integration and 8 ecosystem commands ([977d080](https://github.com/jadecli/jade-dev-assist/commit/977d08071dd3f1a5e0be82939725087016892d60))
+* add security deny patterns to all agents ([12f7a71](https://github.com/jadecli/jade-dev-assist/commit/12f7a712042883c817cfa999c58cf2d6c5f7594e))
+* **github:** implement bidirectional sync between tasks.json and GitHub Issues ([d251196](https://github.com/jadecli/jade-dev-assist/commit/d2511964a480ea150a9285b6f90565dda96ffcb3))
+
+
+### Bug Fixes
+
+* add eslint setup and resolve linting issues ([a4a99c3](https://github.com/jadecli/jade-dev-assist/commit/a4a99c30830ba7ba07edde74ec6aa1f5a43943e7))
+
 ## [1.1.0](https://github.com/jadecli/jade-dev-assist/compare/jade-dev-assist-v1.0.0...jade-dev-assist-v1.1.0) (2026-02-04)
 
 ### Features
